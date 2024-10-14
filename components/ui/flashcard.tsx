@@ -56,7 +56,7 @@ export default function Flashcard() {
     }
 
     return (
-        <div className="flex gap-4 bg-red-600 min-h-[30vh] items-center justify-between text-3xl p-6 hover:ring-4 hover:ring-lime-500 " onClick={handleClick}>
+        <div className="flex flex-grow gap-4 min-h-[30vh] items-center justify-between text-3xl p-6 hover:ring-4 hover:ring-white " onClick={handleClick}>
             <Button variant={"outline"} size={"lg"} onClick={lastCard} disabled={!backButton}>Back</Button>
             <div className= "p-6">
                 {isTitle? Cards[card].title : Cards[card].backtext}
