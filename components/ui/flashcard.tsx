@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { useState } from 'react';
+import { ArrowLeft, ArrowRight } from "lucide-react";
 
 
 const Cards = [
@@ -56,12 +57,12 @@ export default function Flashcard() {
     }
 
     return (
-        <div className="flex flex-grow gap-4 min-h-[30vh] items-center justify-between text-3xl p-6 hover:ring-4 hover:ring-white " onClick={handleClick}>
-            <Button variant={"outline"} size={"lg"} onClick={lastCard} disabled={!backButton}>Back</Button>
+        <div className="flex flex-grow gap-4 min-h-[30vh] items-center justify-between text-3xl p-6 rounded-xl hover:ring-4 hover:ring-ring" onClick={handleClick}>
+            <Button variant={"ghost"} size={"lg"} onClick={lastCard} disabled={!backButton}><ArrowLeft className="h-10 w-10"/></Button>
             <div className= "p-6">
                 {isTitle? Cards[card].title : Cards[card].backtext}
             </div>
-            <Button variant={"outline"} size={"lg"} onClick={nextCard}>Next</Button>
+            <Button variant={"ghost"} size={"lg"} onClick={nextCard}><ArrowRight className="h-10 w-10"/></Button>
         </div>
     )
 }
