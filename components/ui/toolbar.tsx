@@ -1,5 +1,6 @@
 import { PlusCircleIcon } from "lucide-react"
 import { Button } from "./button"
+import { Slider } from "./slider"
 
 export function Toolbar() {
     return (
@@ -7,7 +8,7 @@ export function Toolbar() {
             <div className="font-bold text-4xl mb-5 text-white mt-4">flexcards</div>
             <div className="flex flex-col gap-4 w-full">
                 <div className="flex flex-col gap-2">
-                    <h1>Current Deck</h1>
+                    <h1>Current Deck:</h1>
                     <div className= "bg-gray-600 p-1 shadow-inner max-h-[15vh] overflow-auto hover:ring-2 hover:ring-white">
                         <ul>
                             <li>Card 1</li>
@@ -33,6 +34,11 @@ export function Toolbar() {
                         </ul>
                     </div>
                 </div>
+            </div>
+            <div className="flex flex-col gap-3 w-full items-center">
+                <h1>{'Failure Rate (%)'}</h1>
+                <Slider/>
+                <p>X cards</p>
             </div>
             <div className="flex flex-col mt-4 gap-2 w-full">
                 <h1>Decks:</h1>
