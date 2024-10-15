@@ -21,7 +21,7 @@ export default function VaulDrawer() {
           <div className="bg-zinc-50 h-full w-full grow p-5 flex flex-col rounded-[16px] justify-between">
               <div className='flex flex-col justify-start gap-2 items-center'>
                 <div className="font-bold text-4xl mb-4 text-zinc-900 mx-auto mt-4">flexcards</div>
-                <Link href={'./'} className='text-black font-bold text-xl rounded-xl hover:bg-accent p-2 w-full'>Home</Link>
+                <Link href={'./'} className='text-black font-bold text-xl rounded-xl hover:text-gray-500 p-2 w-full'>Home</Link>
               </div>
               <p className='text-gray-600 text-xs mx-auto font-mono'>Created by Patrick Plasterer</p>
           </div>

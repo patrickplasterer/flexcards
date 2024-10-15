@@ -2,24 +2,24 @@
 
 import { Button } from "@/components/ui/button"
 import { useState } from 'react';
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, CheckIcon, XIcon } from "lucide-react";
 
 
 const Cards = [
     {
         key: 1,
         title: "First Card",
-        backtext: "This is the back text."
+        backtext: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam nisl sapien, vehicula facilisis lorem a, tristique ultrices lorem. Integer dignissim justo est, ut vestibulum ligula tempor sed. Integer facilisis condimentum libero, eu aliquet turpis efficitur quis. Duis quis velit in ipsum tincidunt mollis convallis nec turpis. Vivamus non venenatis augue"
     },
     {
         key: 2,
         title: "Second Card",
-        backtext: "This is the back text."
+        backtext: "In justo tortor, dignissim nec vehicula et, ullamcorper id purus. "
     },
     {
         key: 3,
         title: "Third Card",
-        backtext: "This is the back text."
+        backtext: "Sed nec elementum mi. Maecenas ullamcorper est odio, nec congue leo semper at. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris at euismod tellus. Pellentesque in luctus diam. Vivamus eu quam quis dolor luctus posuere sed quis augue. Integer ac eros quis libero dignissim congue. Proin eleifend sit amet mauris et eleifend."
     },
 
 ]
@@ -57,12 +57,20 @@ export default function Flashcard() {
     }
 
     return (
-        <div className="flex flex-grow gap-4 min-h-[30vh] items-center justify-between text-3xl p-6 rounded-xl hover:ring-4 hover:ring-ring" onClick={handleClick}>
-            <Button variant={"ghost"} size={"lg"} onClick={lastCard} disabled={!backButton}><ArrowLeft className="h-10 w-10"/></Button>
-            <div className= "p-6">
-                {isTitle? Cards[card].title : Cards[card].backtext}
+        <div className="flex flex-col min-h-[30vh] h-screen items-center justify-between text-3xl rounded-xl hover:ring-4 hover:ring-ring" onClick={handleClick}>
+            <div className="flex flex-row flex-grow items-center justify-between w-full overflow-hidden">
+                <Button variant={"ghost"} size={"lg"} onClick={lastCard} disabled={!backButton}><ArrowLeft className="h-10 w-10"/></Button>
+                <div className="flex flex-row flex-grow justify-center">
+                    <div className="p-4 items-center overflow-auto">
+                        {isTitle? Cards[card].title : Cards[card].backtext}
+                    </div>
+                </div>
+                <Button variant={"ghost"} size={"lg"} onClick={nextCard}><ArrowRight className="h-10 w-10"/></Button>
             </div>
-            <Button variant={"ghost"} size={"lg"} onClick={nextCard}><ArrowRight className="h-10 w-10"/></Button>
+            <div className="flex flex-row justify-center">
+                    <Button variant={"ghost"} size={"lg"} onClick={nextCard}><XIcon className="h-10 w-10"/></Button>
+                    <Button variant={"ghost"} size={"lg"} onClick={nextCard}><CheckIcon className="h-10 w-10"/></Button>
+            </div>
         </div>
     )
 }
