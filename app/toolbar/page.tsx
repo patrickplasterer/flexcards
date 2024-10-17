@@ -7,7 +7,7 @@ import { Toolbar } from "@/components/ui/toolbar";
 export default function Home() {
   return (
    <div className="flex flex-col w-full">
-    <div className="flex flex-row h-screen">
+    <div className="flex flex-row h-dvh">
         <Toolbar />
       <div className="flex flex-grow flex-col w-full p-4">
         <Flashcard/>

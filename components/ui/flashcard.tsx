@@ -57,7 +57,7 @@ export default function Flashcard() {
     }
 
     return (
-        <div className="flex flex-col min-h-[30vh] h-screen items-center justify-between text-3xl rounded-xl hover:ring-4 hover:ring-ring" onClick={handleClick}>
+        <div className="flex flex-col min-h-[30vh] flex-grow items-center justify-between text-3xl rounded-xl hover:ring-2 hover:ring-ring" onClick={handleClick}>
             <div className="flex flex-row flex-grow items-center justify-between w-full overflow-hidden">
                 <Button variant={"ghost"} size={"lg"} onClick={lastCard} disabled={!backButton}><ArrowLeft className="h-10 w-10"/></Button>
                 <div className="flex flex-row flex-grow justify-center">
@@ -67,7 +67,7 @@ export default function Flashcard() {
                 </div>
                 <Button variant={"ghost"} size={"lg"} onClick={nextCard}><ArrowRight className="h-10 w-10"/></Button>
             </div>
-            <div className="flex flex-row justify-center">
+            <div className="flex flex-row justify-center h-[10vh]">
                     <Button variant={"ghost"} size={"lg"} onClick={nextCard}><XIcon className="h-10 w-10"/></Button>
                     <Button variant={"ghost"} size={"lg"} onClick={nextCard}><CheckIcon className="h-10 w-10"/></Button>
             </div>

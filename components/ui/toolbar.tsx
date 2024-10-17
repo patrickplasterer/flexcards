@@ -1,10 +1,21 @@
+'use client'
+
 import { PlusCircleIcon } from "lucide-react"
 import { Button } from "./button"
-import { Slider } from "./slider"
+import React, { useState } from "react"
+import { Slider } from "@/components/ui/slider"
+import { SuccessChart } from "./success-chart"
 
 export function Toolbar() {
+
+    const [slider, setSlider] = useState(0);
+
+    function handleChange(value: number[]) {
+        setSlider(value[0])
+    }
+
     return (
-        <div className="flex flex-col p-4 bg-accent w-80 gap-4 items-center">
+        <div className="flex flex-col p-4 bg-accent w-80 gap-5 items-center">
             <div className="font-bold text-4xl mb-5 text-white mt-4">flexcards</div>
             <div className="flex flex-col gap-4 w-full">
                 <div className="flex flex-col gap-2">
@@ -35,12 +46,12 @@ export function Toolbar() {
                     </div>
                 </div>
             </div>
-            <div className="flex flex-col gap-3 w-full items-center">
-                <h1>{'Failure Rate (%)'}</h1>
-                <Slider/>
-                <p>X cards</p>
+            <div className="flex flex-col gap-1 w-full items-center">
+                <SuccessChart />
+                <Slider value={[slider]} onValueChange={handleChange} defaultValue={[100]}/>                
+                <h1>{`Success Rate (${slider}%)`}</h1>
             </div>
-            <div className="flex flex-col mt-4 gap-2 w-full">
+            <div className="flex flex-col mt-2 gap-2 w-full">
                 <h1>Decks:</h1>
                 <div className="bg-gray-600 p-1 flex-grow shadow-inner">
                     <ul>
