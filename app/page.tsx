@@ -1,14 +1,10 @@
-import { Button } from "@/components/ui/button"
-import Flashcard from "@/components/ui/flashcard"
-import VaulDrawer from "@/components/ui/drawer";
+import { PopUp } from "@/components/ui/popup";
 
 
 export default function Home() {
   return (
-   <div className="flex flex-col h-dvh w-full p-2 gap-2">
-      <div className="flex flex-row p-4 items-center rounded-xl">
+   <div className="flex flex-col h-dvh w-full p-1">
         <h1 className="text-3xl font-bold">flexcards</h1>
-      </div>
    </div>
   );
 }
