@@ -1,9 +1,9 @@
-CREATE TYPE "public"."hitsType" AS ENUM('hit', 'miss');--> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "cards" (
 	"id" integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY (sequence name "cards_id_seq" INCREMENT BY 1 MINVALUE 1 MAXVALUE 2147483647 START WITH 1 CACHE 1),
 	"front" varchar(3000) NOT NULL,
 	"back" varchar(3000) NOT NULL,
-	"deck" integer
+	"deck" integer,
+	"createdOn" timestamp DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "decks" (
@@ -39,10 +39,9 @@ CREATE TABLE IF NOT EXISTS "reviews" (
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "users" (
 	"id" integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY (sequence name "users_id_seq" INCREMENT BY 1 MINVALUE 1 MAXVALUE 2147483647 START WITH 1 CACHE 1),
-	"name" varchar(255) NOT NULL,
-	"email" varchar(255) NOT NULL,
-	"password" varchar(255) NOT NULL,
-	CONSTRAINT "users_email_unique" UNIQUE("email")
+	"name" varchar(255) DEFAULT 'Guest' NOT NULL,
+	"email" varchar(255) DEFAULT 'guest@guest.com' NOT NULL,
+	"password" varchar(255) DEFAULT 'guest' NOT NULL
 );
 --> statement-breakpoint
 DO $$ BEGIN

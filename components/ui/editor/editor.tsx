@@ -1,11 +1,11 @@
-'use client'
-
 import { CardPreview } from './card-preview'
 import { SaveIcon, Trash2Icon, SquarePlusIcon, UsersIcon, DownloadIcon, GripHorizontalIcon, GripVerticalIcon } from 'lucide-react'
 import { Button } from '../button'
+import { DeckList } from './deck-list'
 
 
 export function Editor() {
+
     return (
 
             <div className="flex flex-row rounded-xl border-2 h-full w-full flex-none overflow-hidden">
@@ -19,15 +19,7 @@ export function Editor() {
                     </div>
                     <div className="bg-border h-[1px]"></div>
                     <div className="flex flex-col basis-1/2 p-4">
-                        <Button variant={'nav'} className='bg-accent'>Deck 1</Button>
-                        <Button variant={'nav'}>
-                            <div className='flex w-full justify-between'>
-                                <div className='flex'>Deck 1</div>
-                                <div className='flex rounded-lg opacity-50 hover:opacity-100'><UsersIcon className='w-4 h-4'/></div>
-                            </div>
-                        </Button>
-                        <Button variant={'nav'}>Deck 1</Button>
-                        <Button variant={'nav'}>Deck 1</Button>
+                        <DeckList userID={2}/>
                     </div>
                     <div className="flex justify-center items-center bg-border h-[1px]"><div className='flex z-10 rounded-lg opacity-50 p-4 hover:opacity-100 cursor-row-resize'><GripHorizontalIcon className='w-4 h-4' /></div></div>
                     <div className="flex flex-col basis-1/2 px-2 py-4">
