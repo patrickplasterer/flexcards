@@ -1,7 +1,10 @@
+'use client'
+
 import { CardPreview } from './card-preview'
 import { SaveIcon, Trash2Icon, SquarePlusIcon, UsersIcon, DownloadIcon, GripHorizontalIcon, GripVerticalIcon } from 'lucide-react'
 import { Button } from '../button'
 import { DeckList } from './deck-list'
+import { useState } from 'react'
 
 
 export function Editor() {
@@ -19,7 +22,6 @@ export function Editor() {
                     </div>
                     <div className="bg-border h-[1px]"></div>
                     <div className="flex flex-col basis-1/2 p-4">
-                        <DeckList userID={2}/>
                     </div>
                     <div className="flex justify-center items-center bg-border h-[1px]"><div className='flex z-10 rounded-lg opacity-50 p-4 hover:opacity-100 cursor-row-resize'><GripHorizontalIcon className='w-4 h-4' /></div></div>
                     <div className="flex flex-col basis-1/2 px-2 py-4">
