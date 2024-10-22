@@ -37,18 +37,18 @@ export default function RootLayout({
           <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
             <div className='flex flex-col h-screen'>
                 <div className="flex flex-row justify-start items-center w-full py-2 px-4">
-                  <Link href='./' className="flex items-center justify-center mr-6 font-bold text-lg">
+                  <Link href='./' className="flex items-center justify-center mr-6 mt-[1px] font-bold text-lg">
                       flexcards
                   </Link>
-                  <div className="flex justify-between w-full items-center">
-                      <div className="flex justify-start gap-4 font-extralight items-center">
-                          <div>Editor</div>
+                  <div className="flex justify-between w-full items-center font-extralight">
+                      <div className="flex justify-start gap-4 items-center">
+                          <Link href='./editor'>Editor</Link>
                           <div>Discover</div>
                           <div>Analytics</div>
                       </div>
                       <div className="flex gap-4 items-center">
                           <div className="flex">Help</div>
-                          <div className="flex">
+                          <div className="flex mb-[3px]">
                             <SignedIn>
                               <UserButton />
                             </SignedIn>
