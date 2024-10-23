@@ -37,15 +37,16 @@ export default function RootLayout({
           <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
             <div className='flex flex-col h-screen'>
                 <div className="flex flex-row justify-start items-center w-full py-2 px-4">
-                  <Link href='./dashboard' className="flex items-center justify-center mr-6 mb-[2px] font-bold text-lg hover:underline underline-offset-4 decoration-2">
+                  <Link href='/dashboard' className="flex items-center justify-center mr-6 mb-[2px] font-bold text-lg hover:underline underline-offset-4 decoration-2">
                       flexcards
                   </Link>
                   <div className="flex justify-between w-full items-center font-extralight">
                       <div className="flex justify-start gap-4 items-center">
                           <Link className='hover:underline hover:opacity-90 underline-offset-4' href='./dashboard'>Dashboard</Link>
-                          <Link className='hover:underline hover:opacity-90 underline-offset-4' href='./editor'>Editor</Link>
-                          <Link className='hover:underline hover:opacity-90 underline-offset-4' href='./discover'>Discover</Link>
-                          <Link className='hover:underline hover:opacity-90 underline-offset-4' href='./analytics'>Analytics</Link>
+                          <Link className='hover:underline hover:opacity-90 underline-offset-4' href='/study'>Study</Link>
+                          <Link className='hover:underline hover:opacity-90 underline-offset-4' href='/editor'>Editor</Link>
+                          <Link className='hover:underline hover:opacity-90 underline-offset-4' href='/discover'>Discover</Link>
+                          <Link className='hover:underline hover:opacity-90 underline-offset-4' href='/analytics'>Analytics</Link>
                       </div>
                       <div className="flex gap-4 items-center">
                           <div className="flex">Help</div>

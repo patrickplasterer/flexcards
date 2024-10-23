@@ -1,7 +1,7 @@
-import { Editor } from '@/components/ui/editor/editor'
+import { AnalyticsPanel } from '@/components/ui/analytics/analytics-panel'
 
 export default function Page() {
     return (
-            <Editor />
+            <AnalyticsPanel />
     )
 }

@@ -1,11 +1,12 @@
 'use client'
 
-import { CardPreview } from './card-preview'
+import { CardPreview } from '../editor/card-preview'
 import { SaveIcon, Trash2Icon, SquarePlusIcon, UsersIcon, DownloadIcon, GripHorizontalIcon, GripVerticalIcon } from 'lucide-react'
 import { Button } from '../button'
+import Flashcard from '../flashcard'
 
 
-export function Editor() {
+export function StudyDeck() {
 
     return (
 
@@ -51,22 +52,8 @@ export function Editor() {
                     </div>
                 </div>
                 <div className="flex flex-col justify-center items-center bg-border w-[1px]"><div className='flex z-10 rounded-lg opacity-50 p-4 hover:opacity-100 cursor-col-resize'><GripVerticalIcon className='w-4 h-4' /></div></div>
-                <div className="flex flex-col basis-1/2 grow">
-                    <div className="flex flex-row items-center justify-end gap-4 px-2 h-10 shrink-0">
-                        <Button variant={'nav'}>Delete</Button>
-                        <Button variant={'nav'}>Save</Button>
-                    </div>
-                    <div className="bg-border h-[1px]"></div>
-                    <div className="flex flex-col basis-24 items-center justify-center p-6">
-                        Card
-                    </div>
-                    <div className="flex justify-center items-center bg-border h-[1px]"><div className='flex z-10 rounded-lg opacity-50 p-4 hover:opacity-100 cursor-row-resize'><GripHorizontalIcon className='w-4 h-4' /></div></div>
-                    <div className="flex flex-col grow p-2">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque perferendis minima harum est aspernatur odit accusantium nisi porro doloribus mollitia.
-                    </div>
-                    <div className="bg-border h-[1px]"></div>
-                    <div className="flex flex-row gap-2 p-4 justify-end basis-8">
-                    </div>
+                <div className="flex flex-col basis-1/2 grow p-2">
+                    <Flashcard />
                 </div>
             </div>
     )

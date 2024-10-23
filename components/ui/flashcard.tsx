@@ -48,6 +48,7 @@ export default function Flashcard() {
 
     function lastCard(e) {
         e.stopPropagation();
+        setIsTitle(true);
         if (history.length < 2) {return null}
         let currentCard = history.length - 1
         setCard(history[currentCard - 1])
@@ -57,7 +58,7 @@ export default function Flashcard() {
     }
 
     return (
-        <div className="flex flex-col min-h-[30vh] flex-grow items-center justify-between text-3xl rounded-xl hover:ring-2 hover:ring-ring" onClick={handleClick}>
+        <div className="flex flex-col min-h-[30vh] flex-grow items-center justify-between text-3xl rounded-xl" onClick={handleClick}>
             <div className="flex flex-row flex-grow items-center justify-between w-full overflow-hidden">
                 <Button variant={"ghost"} size={"lg"} onClick={lastCard} disabled={!backButton}><ArrowLeft className="h-10 w-10"/></Button>
                 <div className="flex flex-row flex-grow justify-center">
