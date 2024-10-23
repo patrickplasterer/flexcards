@@ -26,7 +26,7 @@ const chartData = [
    
   export function GenericChart() {
     return (
-      <ChartContainer config={chartConfig} className="flex grow h-[20vh] bg-accent rounded-xl p-4">
+      <ChartContainer config={chartConfig} className="flex grow bg-accent rounded-xl p-4">
         <BarChart accessibilityLayer data={chartData}>
           <Bar dataKey="success_rate" fill="var(--color-success_rate)" radius={4} />
         </BarChart>
@@ -36,7 +36,7 @@ const chartData = [
 
   export function GenericLineChart() {
     return (
-      <ChartContainer config={chartConfig} className="flex grow h-[20vh] bg-accent rounded-xl p-4">
+      <ChartContainer config={chartConfig} className="flex grow bg-accent rounded-xl p-4">
         <LineChart accessibilityLayer data={chartData}>
           <Line dataKey="success_rate" fill="var(--color-success_rate)" radius={4} />
         </LineChart>

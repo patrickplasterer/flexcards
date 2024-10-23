@@ -3,6 +3,7 @@
 import { SaveIcon, Trash2Icon, SquarePlusIcon, UsersIcon, DownloadIcon, GripHorizontalIcon, GripVerticalIcon } from 'lucide-react'
 import { Button } from '../button'
 import { GenericChart, GenericLineChart } from '../generic-chart'
+import { Card } from './card'
 
 
 export function AnalyticsPanel() {
@@ -31,9 +32,9 @@ export function AnalyticsPanel() {
                 <div className="flex flex-col justify-center items-center bg-border w-[1px]"><div className='flex z-10 rounded-lg opacity-50 p-4 hover:opacity-100 cursor-col-resize'><GripVerticalIcon className='w-4 h-4' /></div></div>
                 <div className='flex flex-col gap-4 w-full p-4'>
                         <div className='flex w-full gap-4 items-center justify-center'>
-                            <GenericChart />
-                            <GenericChart />
-                            <GenericChart />
+                            <Card />
+                            <Card />
+                            <Card />
                         </div>
                         <div className='flex flex-col w-full'>
                             <div className='flex flex-wrap gap-4'>

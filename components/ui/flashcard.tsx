@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { useState } from 'react';
-import { ArrowLeft, ArrowRight, CheckIcon, XIcon } from "lucide-react";
+import { ArrowLeft, ArrowRight, CheckIcon, XIcon, ArrowLeftToLineIcon, ArrowRightToLineIcon } from "lucide-react";
 
 
 const Cards = [
@@ -25,7 +25,7 @@ const Cards = [
 ]
 
 
-export default function Flashcard() {
+export default function Flashcard({ handleHide, isHidden }: {handleHide: React.MouseEventHandler, isHidden: boolean}) {
     const [isTitle, setIsTitle] = useState(true);
     const [card, setCard] = useState(0);
     const [history, setHistory] = useState([0]);
@@ -57,8 +57,12 @@ export default function Flashcard() {
         if (newHistory.length < 2) {setBackButton(false)}
     }
 
+
     return (
-        <div className="flex flex-col min-h-[30vh] flex-grow items-center justify-between text-3xl rounded-xl" onClick={handleClick}>
+        <div className="flex relative flex-col min-h-[30vh] flex-grow items-center justify-between text-3xl rounded-xl" onClick={handleClick}>
+            <div className="absolute top-0 left-0 opacity-40 hover:opacity-100" onClick={handleHide}>
+                {isHidden ? <ArrowRightToLineIcon /> : <ArrowLeftToLineIcon/>}
+                </div>
             <div className="flex flex-row flex-grow items-center justify-between w-full overflow-hidden">
                 <Button variant={"ghost"} size={"lg"} onClick={lastCard} disabled={!backButton}><ArrowLeft className="h-10 w-10"/></Button>
                 <div className="flex flex-row flex-grow justify-center">
