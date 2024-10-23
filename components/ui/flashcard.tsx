@@ -2,8 +2,8 @@
 
 import { Button } from "@/components/ui/button"
 import { useState } from 'react';
-import { ArrowLeft, ArrowRight, CheckIcon, XIcon, ArrowLeftToLineIcon, ArrowRightToLineIcon } from "lucide-react";
-
+import { ArrowLeft, ArrowRight, CheckIcon, XIcon, ArrowLeftToLineIcon, ArrowRightToLineIcon, EyeOffIcon, EyeIcon } from "lucide-react";
+import clsx from "clsx";
 
 const Cards = [
     {
@@ -30,10 +30,17 @@ export default function Flashcard({ handleHide, isHidden }: {handleHide: React.M
     const [card, setCard] = useState(0);
     const [history, setHistory] = useState([0]);
     const [backButton, setBackButton] = useState(false);
+    const [isInvisible, setIsInvisible] = useState(false);
 
     function handleClick() {
         isTitle? setIsTitle(false) : setIsTitle(true);
     };
+
+    function handleInvisible(e) {
+        e.stopPropagation();
+        isInvisible? setIsInvisible(false) : setIsInvisible(true);
+    };
+
     function nextCard(e) {
         e.stopPropagation();
         let max = Cards.length - 1;
@@ -63,18 +70,21 @@ export default function Flashcard({ handleHide, isHidden }: {handleHide: React.M
             <div className="absolute top-0 left-0 opacity-40 hover:opacity-100" onClick={handleHide}>
                 {isHidden ? <ArrowRightToLineIcon /> : <ArrowLeftToLineIcon/>}
                 </div>
+            <div className="absolute top-0 right-1 opacity-40 hover:opacity-100" onClick={handleInvisible}>
+                {isInvisible ? <EyeIcon className="opacity-40 hover:opacity-100"/> : <EyeOffIcon/>}
+                </div>
             <div className="flex flex-row flex-grow items-center justify-between w-full overflow-hidden">
-                <Button variant={"ghost"} size={"lg"} onClick={lastCard} disabled={!backButton}><ArrowLeft className="h-10 w-10"/></Button>
+                <Button variant={"ghost"} size={"lg"} className={clsx('disabled:opacity-0', {'opacity-0 hover:opacity-100': isInvisible})} onClick={lastCard} disabled={!backButton}><ArrowLeft className="h-10 w-10"/></Button>
                 <div className="flex flex-row flex-grow justify-center">
                     <div className="p-4 items-center overflow-auto">
                         {isTitle? Cards[card].title : Cards[card].backtext}
                     </div>
                 </div>
-                <Button variant={"ghost"} size={"lg"} onClick={nextCard}><ArrowRight className="h-10 w-10"/></Button>
+                <Button variant={"ghost"} size={"lg"} className={isInvisible ? 'opacity-0 hover:opacity-100' : ''} onClick={nextCard}><ArrowRight className="h-10 w-10"/></Button>
             </div>
             <div className="flex flex-row justify-center h-[10vh]">
-                    <Button variant={"ghost"} size={"lg"} onClick={nextCard}><XIcon className="h-10 w-10"/></Button>
-                    <Button variant={"ghost"} size={"lg"} onClick={nextCard}><CheckIcon className="h-10 w-10"/></Button>
+                    <Button variant={"ghost"} size={"lg"} className={isInvisible ? 'opacity-0 hover:opacity-100' : ''} onClick={nextCard}><XIcon className="h-10 w-10"/></Button>
+                    <Button variant={"ghost"} size={"lg"} className={isInvisible ? 'opacity-0 hover:opacity-100' : ''} onClick={nextCard}><CheckIcon className="h-10 w-10"/></Button>
             </div>
         </div>
     )
