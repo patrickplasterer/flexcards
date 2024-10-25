@@ -1,6 +1,6 @@
 'use client'
 
-import { CardPreview } from './card-preview'
+import { CardPreview } from '../card-preview'
 import { SaveIcon, Trash2Icon, SquarePlusIcon, UsersIcon, DownloadIcon, GripHorizontalIcon, GripVerticalIcon } from 'lucide-react'
 import { Button } from '../button'
 

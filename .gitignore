@@ -36,5 +36,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-PLANNING.txt
+.txt
 json-to-sql-script.js
+.excalidraw

@@ -1,8 +1,6 @@
-import { PopUp } from "@/components/ui/popup";
 import Image from "next/image";
 import snapshot from '@/public/snapshot.png'
 import Link from "next/link";
-
 
 export default function Home() {
   return (

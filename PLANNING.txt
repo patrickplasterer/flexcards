@@ -1,0 +1,8 @@
+
+The study deck components:
+
+-Page
+-StudyDeck
+-DeckList
+-DeckButton
+-Flashcard
