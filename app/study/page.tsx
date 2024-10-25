@@ -7,8 +7,7 @@ import { Toolbar } from "@/components/ui/toolbar";
 
 
 export default async function Page({ searchParams }) {
-    const deck = searchParams?.deck;
-    console.log(deck)
+    let deck = searchParams?.deck;
     const user = await getUser();
     const decks = await getDecks(user.id);
     const cards = await getCards(deck ? deck : decks[0].id)
