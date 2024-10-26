@@ -19,3 +19,21 @@ export async function updatePublic(deckId: number) {
   revalidatePath('/study');
   // redirect('/study');
 }
+
+
+export async function updateCard(formData) {
+
+  const front = formData.get('front');
+  const back = formData.get('back');
+
+  console.log(back)
+
+  // try {
+  //   const decks = await db.update(decksTable).set({ isPublic: not(decksTable.isPublic) }).where(eq(decksTable.id, deckId))
+  // } catch(error) {
+  //   return {
+  //     message: 'Database Error: Failed to update isPublic.'
+  //   };
+  // }
+  // revalidatePath('/editor');
+}

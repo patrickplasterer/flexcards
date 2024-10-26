@@ -7,18 +7,18 @@ import { Toolbar } from "@/components/ui/toolbar";
 
 
 export default async function Page({ searchParams }) {
-    let deck = searchParams?.deck;
-    const user = await getUser();
-    const decks = await getDecks(user.id);
-    const cards = await getCards(deck ? deck : decks[0].id)
+    const { deck, card } = searchParams;
+    // const user = await getUser();
+    // const decks = await getDecks(user.id);
+    // const cards = await getCards(deck ? deck : decks[0].id)
     
 
     return (
         <Workspace>
-          <CollapsingPanel>
+          {/* <CollapsingPanel>
             <Toolbar decks={decks} workspace="study"/>
           </CollapsingPanel>
-          <Flashcard cards={cards}/>
+          <Flashcard cards={cards}/> */}
         </Workspace>
     );
 

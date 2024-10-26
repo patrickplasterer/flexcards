@@ -1,15 +1,22 @@
 import { CardPreview } from "@/components/ui/card-preview";
 import * as React from 'react'
 
-export function CardList({ cards, handleClick }: {cards: Array<object>, handleClick: React.MouseEventHandler<HTMLButtonElement>}) {
+export function CardList({ cards }: {cards: Array<object>}) {
 
     return (
-        <>
-            {cards.map((card) => {
-                return (
-                    <CardPreview key={card.id} cardId={card.id} front={card.front} back={card.back} handleClick={handleClick} />
-                );
-            })}
-        </>
+        <div className="flex flex-col p-4 gap-2 w-[20vw]">
+            <div className="flex flex-col">
+                <div className="flex w-full border-2 rounded-[0.5rem] p-1">
+                    Search
+                </div>
+            </div>
+            <div className="flex flex-col flex-grow p-2 gap-2 overflow-auto scrollbar-thin scrollbar-track-transparent scrollbar-thumb-accent">
+                {cards.map((card) => {
+                    return (
+                        <CardPreview key={card.id} card={card} />
+                    );
+                })}
+            </div>
+        </div>
     )
 }

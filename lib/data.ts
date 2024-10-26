@@ -19,7 +19,7 @@ export async function getDecks(userId: string) {
 }
 
 export async function getCards(deckId: number) {
-    const cards = await db.select({ id: cardsTable.id, front: cardsTable.front, back: cardsTable.back}).from(cardsTable).where(eq(cardsTable.deck, deckId))
+    const cards = await db.select({ id: cardsTable.id, front: cardsTable.front, back: cardsTable.back, deck: cardsTable.deck}).from(cardsTable).where(eq(cardsTable.deck, deckId))
     
     return(cards);
 }
