@@ -9,9 +9,9 @@
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import { Button } from "./button"
-import { Input } from "./input"
-import { Label } from "./label"
+import { Button } from "../button"
+import { Input } from "../input"
+import { Label } from "../label"
  
 export function AddDeckDialog({handleClick}) {
   return (

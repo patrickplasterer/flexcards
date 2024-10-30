@@ -7,7 +7,7 @@ import { createEditor } from "slate";
 import { Editable, Slate, withReact } from "slate-react";
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
-import { Button } from "./button";
+import { Button } from "../button";
 
 export function CardEditor({ activeCard, isDisabled }) {
   const router =  useRouter();

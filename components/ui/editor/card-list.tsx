@@ -1,11 +1,11 @@
 "use client"
 
-import { CardPreview } from "@/components/ui/card-preview";
+import { CardPreview } from "@/components/ui/editor/card-preview";
 import { useSearchParams, useRouter } from "next/navigation";
 import * as React from 'react'
 import { createCard, deleteCard } from "@/lib/actions";
 import { cn } from "@/lib/utils";
-import { Button } from "./button";
+import { Button } from "../button";
 
 export function CardList({ cards, isDisabled }: {cards: Array<object>, isDisabled: boolean}) {
     const router = useRouter();

@@ -1,6 +1,6 @@
 'use server'
 
-import { sql } from "drizzle-orm"
+import { desc, sql } from "drizzle-orm"
 import { revalidatePath } from "next/cache";
 import { db } from "@/db";
 import { not, eq } from 'drizzle-orm'
@@ -62,13 +62,13 @@ export async function deleteCard(cardId: number) {
 
 export async function createDeck(formData: FormData) {
   let newDeck = undefined;
-  const title = formData.get('title') as string;
+  const name = formData.get('title') as string;
   const user = formData.get('userId') as string;
-  const description = formData.get('description');
-  const tags = formData.get('tags');
+  const description = formData.get('description') as string;
+  const tags = formData.get('tags') as string;
 
   try {
-    newDeck = await db.insert(decksTable).values({name: title, user: user}).returning();
+    newDeck = await db.insert(decksTable).values({name: name, user: user, description: description, tags: tags}).returning();
   } catch(error) {
     return {
       message: 'Database Error: Failed to create card.'
@@ -90,4 +90,23 @@ export async function deleteDeck(deckId: number) {
   }
   revalidatePath('/editor');
   redirect('/editor')
+}
+
+export async function updateDeck(formData: FormData) {
+
+  const name = formData.get('title') as string;
+  const description = formData.get('description') as string;
+  const tags = formData.get('tags') as string;
+  const deckId = formData.get('deckId');
+
+  console.log(description)
+
+  try {
+    await db.update(decksTable).set({ name: name, description: description, tags: tags }).where(eq(decksTable.id, deckId))
+  } catch(error) {
+    return {
+      message: 'Database Error: Failed to update deck.'
+    };
+  }
+  revalidatePath('/editor');
 }

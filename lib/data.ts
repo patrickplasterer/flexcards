@@ -13,7 +13,7 @@ export async function getUser() {
 }
 
 export async function getDecks(userId: string) {
-    const decks = await db.select({ id: decksTable.id, name: decksTable.name, isPublic: decksTable.isPublic}).from(decksTable).where(eq(decksTable.user, userId)).orderBy(desc(decksTable.createdOn))
+    const decks = await db.select({ id: decksTable.id, name: decksTable.name, description: decksTable.description, tags: decksTable.tags, isPublic: decksTable.isPublic}).from(decksTable).where(eq(decksTable.user, userId)).orderBy(desc(decksTable.createdOn))
     
     return(decks);
 }
