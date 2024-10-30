@@ -1,6 +1,6 @@
 'use server';
 
-import { eq } from "drizzle-orm";
+import { eq, desc } from "drizzle-orm";
 import { db } from "@/db";
 import { cardsTable, decksTable } from "@/db/schema";
 import { currentUser } from "@clerk/nextjs/server"
@@ -19,7 +19,7 @@ export async function getDecks(userId: string) {
 }
 
 export async function getCards(deckId: number) {
-    const cards = await db.select({ id: cardsTable.id, front: cardsTable.front, back: cardsTable.back, deck: cardsTable.deck}).from(cardsTable).where(eq(cardsTable.deck, deckId))
+    const cards = await db.select({ id: cardsTable.id, front: cardsTable.front, back: cardsTable.back, deck: cardsTable.deck}).from(cardsTable).where(eq(cardsTable.deck, deckId)).orderBy(desc(cardsTable.createdOn))
     
     return(cards);
 }

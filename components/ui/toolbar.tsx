@@ -7,7 +7,13 @@ import { MenuBar } from "./menubar"
 export function Toolbar({ decks, workspace }: {decks: Array<object>, workspace: string}) {
     return (
             <div className="flex flex-col flex-grow overflow-hidden w-[20vw]">
-                <MenuBar />
+                <div className="flex h-[4vh] items-center justify-center">
+                    <div className='flex w-full items-center justify-center gap-2'>
+                        <div className="flex items-center justify-center px-2 py-1 hover:bg-accent hover: text-accent-foreground rounded-[0.5rem]">Edit</div>
+                        <div className="flex items-center justify-center px-2 py-1 hover:bg-accent hover: text-accent-foreground rounded-[0.5rem]">View</div>
+                        <div className="flex items-center justify-center px-2 py-1 hover:bg-accent hover: text-accent-foreground rounded-[0.5rem]">Analytics</div>
+                    </div>
+                </div>
                 <div className="bg-border h-[1px]"></div>
                 <div className='flex flex-col basis-1/2 py-4 px-2 gap-1'>
                     { decks ? <DeckList decks={decks} workspace={workspace}/> : "You don't have any decks, create one in the editor."}

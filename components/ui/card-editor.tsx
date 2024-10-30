@@ -1,32 +1,90 @@
-"use client"
+"use client";
 
-import { GripHorizontalIcon } from "lucide-react"
-import { useSearchParams } from "next/navigation";
 import { updateCard } from "@/lib/actions";
-import { TextField } from "./text-field";
+import { GripHorizontalIcon, SaveIcon } from "lucide-react";
+import { useState } from "react";
+import { createEditor } from "slate";
+import { Editable, Slate, withReact } from "slate-react";
+import { cn } from "@/lib/utils";
+import { useRouter } from "next/navigation";
+
+export function CardEditor({ activeCard, isDisabled }) {
+  const router =  useRouter();
+  
+  const [frontEditor] = useState(() => withReact(createEditor()));
+
+
+  const frontInitialValue = [
+  {
+      type: "paragraph",
+      children: [{ text: activeCard?.front ? activeCard.front : 'Front text' }],
+  },
+  ];
 
 
 
+frontEditor.children = frontInitialValue;
+
+const [backEditor] = useState(() => withReact(createEditor()));
+const backInitialValue = [
+  {
+    type: "paragraph",
+    children: [{ text: activeCard?.back ? activeCard.back : 'Back text' }],
+  },
+];
+  backEditor.children = backInitialValue;
+
+
+function handleSave() {
+    const [front, back] = document.querySelectorAll('[data-slate-string');
+    const frontText = front.innerHTML;
+    const backText = back.innerHTML;
+    const cardId = activeCard.id
+    updateCard(frontText, backText, cardId);
+}
+
+function handleReset() {
+  router.refresh();
+}
 
 
 
-
-export function CardEditor({ activeCard }) {
-
-    return (
-        <div className="flex flex-col flex-grow basis-1/2">
-            <div className="flex p-2 items-center justify-end">
-                <div className="flex p-2 rounded-xl hover:bg-accent hover:text-accent-foreground">
-                    Save
-                </div>
-            </div>
-            <div id='front' className="flex flex-col items-center justify-center p-4 basis-1/2">
-                <TextField value={activeCard.front}/>   
-            </div>
-            <div className="flex justify-center items-center bg-border h-[1px]"><div className='flex z-10 rounded-lg opacity-50 p-4 hover:opacity-100 cursor-row-resize'><GripHorizontalIcon className='w-4 h-4' /></div></div>
-            <div id='back' className="flex flex-col items-center justify-center p-4 basis-1/2">
-                {activeCard.back}
-            </div>
+  return (
+    <div className={cn("flex flex-col flex-grow basis-1/2", {"pointer-events-none opacity-60": isDisabled === true})}>
+      <div className="flex p-2 gap-2 items-center justify-end h-[4vh] flex-none overflow-hidden">
+        <div className="flex px-2 py-1 rounded-[0.5rem] bg-primary text-primary-foreground hover:opacity-60" onClick={handleReset}>
+          Reset
         </div>
-    )
+        <div className="flex px-2 py-1 rounded-[0.5rem] bg-primary text-primary-foreground hover:opacity-60" onClick={handleSave}>
+          Save
+        </div>
+      </div>
+      <div className="bg-border h-[1px]"></div>
+      <div id="front" className="flex flex-col items-center justify-center p-4 basis-1/2">
+        <div className="flex flex-col items-center justify-center">
+          <Slate
+            editor={frontEditor}
+            initialValue={frontInitialValue}
+          >
+            <Editable readOnly={isDisabled}/>
+          </Slate>
+        </div>
+      </div>
+      <div className="flex justify-center items-center bg-border h-[1px]">
+        <div className="flex z-10 rounded-lg opacity-50 p-4 hover:opacity-100 cursor-row-resize">
+          <GripHorizontalIcon className="w-4 h-4" />
+        </div>
+      </div>
+      <div
+        id="back"
+        className="flex flex-col items-center justify-center p-4 basis-1/2"
+      >
+        <div className="flex flex-col items-center justify-center">
+          <Slate editor={backEditor} initialValue={backInitialValue}>
+            <Editable readOnly={isDisabled}/>
+          </Slate>
+        </div>
+      </div>
+    </div>
+  );
 }
