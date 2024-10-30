@@ -1,12 +1,13 @@
 "use client"
 
 import { CardPreview } from "@/components/ui/card-preview";
-import { redirect, useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import * as React from 'react'
 import { createCard, deleteCard } from "@/lib/actions";
 import { cn } from "@/lib/utils";
 
 export function CardList({ cards, isDisabled }: {cards: Array<object>, isDisabled: boolean}) {
+    const router = useRouter();
     const searchParams = useSearchParams();
     const deckId = searchParams.get('deck');
     const cardId = searchParams.get('card');
@@ -14,19 +15,19 @@ export function CardList({ cards, isDisabled }: {cards: Array<object>, isDisable
     function handleCreate() {
         createCard(Number(deckId));
     }
+    
     function handleDelete() {
         deleteCard(Number(cardId));
-        redirect(`/editor/?${deckId}`)
+        router.push(`/editor/?deck=${deckId}`);
+        
     }
 
     return (
         <div className={cn("flex flex-col w-[20vw] flex-grow overflow-hidden", {"pointer-events-none opacity-60": isDisabled === true})}>
-            <div className="flex p-2 gap-2 items-center justify-end h-[4vh] flex-none overflow-hidden">
-                <div className={cn("flex px-2 py-1 rounded-[0.5rem] bg-primary text-primary-foreground hover:opacity-60", {"pointer-events-none opacity-60": !cardId})} onClick={handleDelete}>
-                    Delete Card
-                </div>
-                <div className="flex px-2 py-1 rounded-[0.5rem] bg-primary text-primary-foreground hover:opacity-60" onClick={handleCreate}>
-                    Create card
+            <div className="flex h-[3vh] flex-none items-center justify-center">
+                <div className='flex w-full items-center justify-end gap-2 text-sm p-2'>
+                    <button className="flex items-center justify-center px-2 py-1 hover:bg-accent hover: text-accent-foreground rounded-[0.5rem]" onClick={handleDelete}>Delete Card</button>
+                    <button className="flex items-center justify-center px-2 py-1 hover:bg-accent hover: text-accent-foreground rounded-[0.5rem]" onClick={handleCreate}>Add Card</button>
                 </div>
             </div>
             <div className="bg-border h-[1px]"></div>

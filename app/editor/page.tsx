@@ -26,7 +26,7 @@ export default async function Page({ searchParams }) {
     return (
         <Workspace>
               <SubtlePanel>
-                <Toolbar decks={decks} workspace="editor"/>
+                <Toolbar decks={decks} deck={deck} userId={user.id} workspace="editor"/>
               </SubtlePanel>
               <SubtlePanel>
                 <CardList cards={cards} isDisabled={isCardListDisabled}/>

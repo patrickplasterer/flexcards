@@ -1,17 +1,31 @@
+"use client"
+
 import { Button } from "./button"
 import { Trash2Icon, SquarePlusIcon, UsersIcon, DownloadIcon, GripHorizontalIcon, GripVerticalIcon } from 'lucide-react'
 import { DeckList } from "./deck-list"
-import { MenuBar } from "./menubar"
+import { createDeck, deleteDeck } from "@/lib/actions"
+import { redirect } from "next/navigation"
 
 
-export function Toolbar({ decks, workspace }: {decks: Array<object>, workspace: string}) {
+export function Toolbar({ decks, workspace, deck, userId }: {decks: Array<object>, workspace: string, deck: object, userId: string}) {
+
+    function handleCreate() {
+        createDeck(userId);
+        console.log('Deck created.')
+    }
+
+    function handleDelete() {
+        deleteDeck(deck);
+        console.log('Deck deleted.');
+        redirect('/editor');
+    }
+
     return (
             <div className="flex flex-col flex-grow overflow-hidden w-[20vw]">
-                <div className="flex h-[4vh] items-center justify-center">
-                    <div className='flex w-full items-center justify-center gap-2'>
-                        <div className="flex items-center justify-center px-2 py-1 hover:bg-accent hover: text-accent-foreground rounded-[0.5rem]">Edit</div>
-                        <div className="flex items-center justify-center px-2 py-1 hover:bg-accent hover: text-accent-foreground rounded-[0.5rem]">View</div>
-                        <div className="flex items-center justify-center px-2 py-1 hover:bg-accent hover: text-accent-foreground rounded-[0.5rem]">Analytics</div>
+                <div className="flex h-[3vh] flex-none items-center justify-center">
+                    <div className='flex w-full items-center justify-end gap-2 text-sm p-2'>
+                        <button className="flex items-center justify-center px-2 py-1 hover:bg-accent hover: text-accent-foreground rounded-[0.5rem]" onClick={handleDelete}>Delete Deck</button>
+                        <button className="flex items-center justify-center px-2 py-1 hover:bg-accent hover: text-accent-foreground rounded-[0.5rem]" onClick={handleCreate}>Add Deck</button>
                     </div>
                 </div>
                 <div className="bg-border h-[1px]"></div>

@@ -5,18 +5,18 @@ import { cn } from "@/lib/utils"
 import { updatePublic } from "@/lib/actions"
 import Link from "next/link"
 import { SetStateAction, useReducer } from "react";
-import { useParams } from "next/navigation"
+import { useSearchParams } from "next/navigation"
 
 export function DeckButton({ title, isPublic, deckId, workspace }: {title: string, isPublic: boolean, deckId: number, workspace: string, deckButton: React.Dispatch<SetStateAction<Event, number>>}) {
     
-    const params = useParams();
+    const searchParams = useSearchParams();
     
     function handleClick(e) {
         e.stopPropagation();
         updatePublic(deckId);
     }
 
-    const activeDeck = params.deck
+    const activeDeck = searchParams.get('deck');
 
     return (
         <Link href={`/${workspace}/?deck=${deckId}`} className={cn("flex px-4 py-2 text-sm w-full hover:bg-accent hover:text-accent-foreground justify-start font-bold rounded-xl", {'bg-accent text-accent-foreground': deckId == activeDeck})}>
