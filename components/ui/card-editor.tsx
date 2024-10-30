@@ -7,6 +7,7 @@ import { createEditor } from "slate";
 import { Editable, Slate, withReact } from "slate-react";
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
+import { Button } from "./button";
 
 export function CardEditor({ activeCard, isDisabled }) {
   const router =  useRouter();
@@ -51,13 +52,13 @@ function handleReset() {
 
   return (
     <div className={cn("flex flex-col flex-grow basis-1/2", {"pointer-events-none opacity-60": isDisabled === true})}>
-      <div className="flex p-2 gap-2 items-center justify-end h-[4vh] flex-none overflow-hidden">
-        <div className="flex px-2 py-1 rounded-[0.5rem] bg-primary text-primary-foreground hover:opacity-60" onClick={handleReset}>
+      <div className="flex p-2 gap-2 items-center justify-end h-[3vh] flex-none overflow-hidden">
+        <Button onClick={handleReset}>
           Reset
-        </div>
-        <div className="flex px-2 py-1 rounded-[0.5rem] bg-primary text-primary-foreground hover:opacity-60" onClick={handleSave}>
+        </Button>
+        <Button onClick={handleSave}>
           Save
-        </div>
+        </Button>
       </div>
       <div className="bg-border h-[1px]"></div>
       <div id="front" className="flex flex-col items-center justify-center p-4 basis-1/2">

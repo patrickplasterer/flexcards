@@ -5,6 +5,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 import * as React from 'react'
 import { createCard, deleteCard } from "@/lib/actions";
 import { cn } from "@/lib/utils";
+import { Button } from "./button";
 
 export function CardList({ cards, isDisabled }: {cards: Array<object>, isDisabled: boolean}) {
     const router = useRouter();
@@ -15,7 +16,7 @@ export function CardList({ cards, isDisabled }: {cards: Array<object>, isDisable
     function handleCreate() {
         createCard(Number(deckId));
     }
-    
+
     function handleDelete() {
         deleteCard(Number(cardId));
         router.push(`/editor/?deck=${deckId}`);
@@ -25,9 +26,9 @@ export function CardList({ cards, isDisabled }: {cards: Array<object>, isDisable
     return (
         <div className={cn("flex flex-col w-[20vw] flex-grow overflow-hidden", {"pointer-events-none opacity-60": isDisabled === true})}>
             <div className="flex h-[3vh] flex-none items-center justify-center">
-                <div className='flex w-full items-center justify-end gap-2 text-sm p-2'>
-                    <button className="flex items-center justify-center px-2 py-1 hover:bg-accent hover: text-accent-foreground rounded-[0.5rem]" onClick={handleDelete}>Delete Card</button>
-                    <button className="flex items-center justify-center px-2 py-1 hover:bg-accent hover: text-accent-foreground rounded-[0.5rem]" onClick={handleCreate}>Add Card</button>
+                <div className='flex w-full items-center justify-end gap-1 text-sm p-2'>
+                    <Button onClick={handleDelete}>Delete Card</Button>
+                    <Button onClick={handleCreate}>Add Card</Button>
                 </div>
             </div>
             <div className="bg-border h-[1px]"></div>

@@ -1,11 +1,11 @@
 "use client"
 
-import { Button } from "./button"
 import { Trash2Icon, SquarePlusIcon, UsersIcon, DownloadIcon, GripHorizontalIcon, GripVerticalIcon } from 'lucide-react'
 import { DeckList } from "./deck-list"
 import { createDeck, deleteDeck } from "@/lib/actions"
 import { redirect } from "next/navigation"
 import { AddDeckDialog } from "./add-deck-dialog"
+import { Button } from "./button"
 
 
 export function Toolbar({ decks, workspace, deck, userId }: {decks: Array<object>, workspace: string, deck: number, userId: string}) {
@@ -24,9 +24,8 @@ export function Toolbar({ decks, workspace, deck, userId }: {decks: Array<object
     return (
             <div className="flex flex-col flex-grow overflow-hidden w-[20vw]">
                 <div className="flex h-[3vh] flex-none items-center justify-center">
-                    <div className='flex w-full items-center justify-end gap-2 text-sm p-2'>
-                        <button className="flex items-center justify-center px-2 py-1 hover:bg-accent hover: text-accent-foreground rounded-[0.5rem]" onClick={handleDelete}>Delete Deck</button>
-                        <button className="flex items-center justify-center px-2 py-1 hover:bg-accent hover: text-accent-foreground rounded-[0.5rem]" onClick={handleCreate}>Add Deck</button>
+                    <div className='flex w-full items-center justify-end gap-1 text-sm p-2'>
+                        <Button variant={'ghost'} onClick={handleDelete}>Delete Deck</Button>
                         <AddDeckDialog handleClick={handleCreate}/>
                     </div>
                 </div>

@@ -17,34 +17,34 @@ export function AddDeckDialog({handleClick}) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">Add Deck</Button>
+        <Button>Add Deck</Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-md bg-background" aria-describedby="Add deck form">
+      <DialogContent className="max-w-md bg-background border-2 rounded-[1rem]" aria-describedby="Add deck form">
         <DialogHeader>
           <DialogTitle className={'text-foreground'}>Add a Deck</DialogTitle>
         </DialogHeader>
         <div className="flex items-center w-full text-foreground">
           <form id='add_deck' action={handleClick} className="flex flex-col gap-4 w-full">
-            <div className="flex flex-col">
+            <div className="flex flex-col gap-1">
               <Label htmlFor="title" className="">
                 Title:
               </Label>
               <Input id="title" name='title' className='rounded-[0.5rem] bg-background text-foreground'/>
             </div>
-            <div className="flex flex-col">
-              <Label htmlFor="description" className="mb-1">
+            <div className="flex flex-col gap-1">
+              <Label htmlFor="description" className="">
                 Description:
               </Label>
               <Input id="description" name='description' className='rounded-[0.5rem]'/>
             </div>
-            <div className="flex flex-col">
-              <Label htmlFor="tags" className="mb-1">
+            <div className="flex flex-col gap-1">
+              <Label htmlFor="tags" className="">
                 Tags:
               </Label>
               <Input id="tags" name='tags' className='rounded-[0.5rem]'/>
             </div>
             <div className="flex justify-end">
-              <DialogClose><Button type='submit' form='add_deck'>Save</Button></DialogClose>
+              <DialogClose><Button variant='default' size='lg' type='submit' form='add_deck'>Save</Button></DialogClose>
             </div>
           </form>
         </div>
