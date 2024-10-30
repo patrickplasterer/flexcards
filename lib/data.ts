@@ -18,6 +18,12 @@ export async function getDecks(userId: string) {
     return(decks);
 }
 
+export async function getPublicDecks() {
+    const decks = await db.select({ id: decksTable.id, name: decksTable.name, isPublic: decksTable.isPublic}).from(decksTable).where(eq(decksTable.isPublic, true)).orderBy(desc(decksTable.createdOn))
+    
+    return(decks);
+}
+
 export async function getCards(deckId: number) {
     const cards = await db.select({ id: cardsTable.id, front: cardsTable.front, back: cardsTable.back, deck: cardsTable.deck}).from(cardsTable).where(eq(cardsTable.deck, deckId)).orderBy(desc(cardsTable.createdOn))
     
