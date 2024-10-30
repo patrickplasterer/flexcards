@@ -12,7 +12,7 @@ export function DeckContextMenu({ children }: {children: React.ReactNode}) {
         <ContextMenu>
             <ContextMenuTrigger>{children}</ContextMenuTrigger>
             <ContextMenuContent className="bg-background text-foreground border-[2px] rounded-xl">
-                <ContextMenuItem>Edit Deck</ContextMenuItem>
+                    <ContextMenuItem>Edit Deck</ContextMenuItem>
                 <ContextMenuItem>Delete Deck</ContextMenuItem>
             </ContextMenuContent>
         </ContextMenu>

@@ -13,14 +13,14 @@ import { Button } from "../button"
 import { Input } from "../input"
 import { Label } from "../label"
  
-export function UpdateDeckDialog({handleClick, activeDeck}) {
+export function UpdateDeckDialog({handleClick, activeDeck, children}) {
 
   console.log(activeDeck)
-  
+
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button>Update Deck</Button>
+        {children}
       </DialogTrigger>
       <DialogContent className="max-w-md bg-background border-2 rounded-[1rem]" aria-describedby="Add deck form">
         <DialogHeader>

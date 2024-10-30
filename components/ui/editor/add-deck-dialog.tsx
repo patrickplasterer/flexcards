@@ -13,11 +13,11 @@ import { Button } from "../button"
 import { Input } from "../input"
 import { Label } from "../label"
  
-export function AddDeckDialog({handleClick}) {
+export function AddDeckDialog({handleClick, children}) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button>Add Deck</Button>
+        {children}
       </DialogTrigger>
       <DialogContent className="max-w-md bg-background border-2 rounded-[1rem]" aria-describedby="Add deck form">
         <DialogHeader>

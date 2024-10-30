@@ -3,8 +3,7 @@
 import { UsersIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { updatePublic } from "@/lib/actions"
-import Link from "next/link"
-import { SetStateAction, useReducer } from "react";
+import { SetStateAction } from "react";
 import { useSearchParams, useRouter } from "next/navigation"
 
 

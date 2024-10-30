@@ -1,10 +1,11 @@
 "use client"
 
 import clsx from "clsx"
-import { ArrowLeftToLineIcon, ArrowRightToLineIcon, GripVerticalIcon } from "lucide-react"
+import { ChevronsLeftIcon, ChevronRightIcon, GripVerticalIcon, ChevronLeftIcon } from "lucide-react"
 import { useState } from "react"
+import { cn } from "@/lib/utils"
 
-export function SubtlePanel({ children }) {
+export function SubtlePanel({ children, position }) {
     
     const [isHidden, setIsHidden] = useState(false)
 
@@ -19,8 +20,8 @@ export function SubtlePanel({ children }) {
                 {children}
                 <div className="flex flex-col justify-center items-center bg-border w-[1px]"><div className='flex z-10 rounded-lg opacity-50 p-4 hover:opacity-100 cursor-col-resize'><GripVerticalIcon className='w-4 h-4'/></div></div>
             </div>
-            <div className="absolute top-0 right-[-28px] opacity-40 hover:opacity-100 z-10" onClick={handleClick}>
-                {isHidden ? <ArrowRightToLineIcon /> : <ArrowLeftToLineIcon/>}
+            <div className={cn("absolute top-0 right-[-28px] opacity-40 hover:opacity-100 z-10", {'top-[15px]': position === '2'})} onClick={handleClick}>
+                {isHidden ? <ChevronRightIcon className="h-6 w-6"/> : <ChevronLeftIcon className="h-6 w-6"/>}
             </div>
         </div>
     )
