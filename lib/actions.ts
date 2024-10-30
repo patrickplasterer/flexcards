@@ -60,10 +60,15 @@ export async function deleteCard(cardId: number) {
 }
 
 
-export async function createDeck(userId: string) {
+export async function createDeck(formData: FormData) {
   let newDeck = undefined;
+  const title = formData.get('title') as string;
+  const user = formData.get('userId') as string;
+  const description = formData.get('description');
+  const tags = formData.get('tags');
+
   try {
-    newDeck = await db.insert(decksTable).values({name: 'New Deck', user: userId}).returning();
+    newDeck = await db.insert(decksTable).values({name: title, user: user}).returning();
   } catch(error) {
     return {
       message: 'Database Error: Failed to create card.'

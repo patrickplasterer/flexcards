@@ -5,13 +5,14 @@ import { Trash2Icon, SquarePlusIcon, UsersIcon, DownloadIcon, GripHorizontalIcon
 import { DeckList } from "./deck-list"
 import { createDeck, deleteDeck } from "@/lib/actions"
 import { redirect } from "next/navigation"
+import { AddDeckDialog } from "./add-deck-dialog"
 
 
-export function Toolbar({ decks, workspace, deck, userId }: {decks: Array<object>, workspace: string, deck: object, userId: string}) {
+export function Toolbar({ decks, workspace, deck, userId }: {decks: Array<object>, workspace: string, deck: number, userId: string}) {
 
-    function handleCreate() {
-        createDeck(userId);
-        console.log('Deck created.')
+    function handleCreate(formData: FormData) {
+        formData.append("userId", userId.toString());
+        createDeck(formData);
     }
 
     function handleDelete() {
@@ -26,6 +27,7 @@ export function Toolbar({ decks, workspace, deck, userId }: {decks: Array<object
                     <div className='flex w-full items-center justify-end gap-2 text-sm p-2'>
                         <button className="flex items-center justify-center px-2 py-1 hover:bg-accent hover: text-accent-foreground rounded-[0.5rem]" onClick={handleDelete}>Delete Deck</button>
                         <button className="flex items-center justify-center px-2 py-1 hover:bg-accent hover: text-accent-foreground rounded-[0.5rem]" onClick={handleCreate}>Add Deck</button>
+                        <AddDeckDialog handleClick={handleCreate}/>
                     </div>
                 </div>
                 <div className="bg-border h-[1px]"></div>
