@@ -39,11 +39,11 @@ export function CardList({ cards, isDisabled }: {cards: Array<object>, isDisable
                     </div>
                 </div>
                 <div className="flex flex-col flex-grow p-2 gap-2 overflow-auto scrollbar-thin scrollbar-track-transparent scrollbar-thumb-accent">
-                    {cards.map((card) => {
+                    {cards.length !== 0 ? cards.map((card) => {
                         return (
                             <CardPreview key={card.id} card={card} />
                         );
-                    })}
+                    }) : <div className="flex opacity-40 p-2 text-sm">Add cards to this deck and they will appear here.</div>}
                 </div>
             </div>
         </div>
