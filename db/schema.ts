@@ -16,6 +16,7 @@ export const hitsTypeEnum = pgEnum("hitsType", ["hit", "miss"]);
 export const hitsTable = pgTable("hits", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
   card: integer("card").references(() => cardsTable.id),
+  user: varchar({ length: 255 }).notNull(),
   createdOn: timestamp().notNull().defaultNow(),
   type: hitsTypeEnum(),
 });

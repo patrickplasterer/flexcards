@@ -15,8 +15,6 @@ import { Label } from "../label"
  
 export function UpdateDeckDialog({handleClick, activeDeck, children}) {
 
-  console.log(activeDeck)
-
   return (
     <Dialog>
       <DialogTrigger asChild>

@@ -13,16 +13,17 @@ export default async function Page({ searchParams }) {
     let deckId = searchParams?.deck;
     if(!deckId) {isCardListDisabled = true};
 
-    let card = searchParams?.card;
-    if(!card) {isCardEditorDisabled = true};
+    let cardId = searchParams?.card;
+    if(!cardId) {isCardEditorDisabled = true};
     
     const user = await getUser();
     const decks = await getDecks(user.id);
     let deck = decks.find(({ id }) => id == deckId)
-    deck = deck ? deck : decks[0].id
+    deck = deck ? deck : decks[0]
     const cards = await getCards(deck.id);
-    card = cards.find(({ id }) => id == card)
-    card = card ? card : cards[0]
+    let card = cards.find(({ id }) => id == cardId)
+    card = card ? card : cards[0];
+    if (!deckId) redirect(`/study?deck=${deck.id}&card=${card.id}`);
 
     return (
         <Workspace>

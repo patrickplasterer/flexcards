@@ -1,0 +1,1 @@
+ALTER TABLE "hits" ADD COLUMN "user" varchar(255) NOT NULL;

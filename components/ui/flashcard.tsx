@@ -3,12 +3,13 @@
 import { Button } from "@/components/ui/button"
 import { useState } from 'react';
 import { ArrowLeft, ArrowRight, CheckIcon, XIcon, ArrowLeftToLineIcon, ArrowRightToLineIcon, EyeOffIcon, EyeIcon } from "lucide-react";
-import clsx from "clsx";
+import { cn } from "@/lib/utils";
+import { addHit, addMiss, addFlip } from "@/lib/actions";
 
 
-export function Flashcard({ cards }: {cards: Array<object>}) {
+export function Flashcard({ cards, userId, card, isDisabled }: {cards: Array<object>, userId: string, card: object, isDisabled: boolean}) {
     const [isTitle, setIsTitle] = useState(true);
-    const [card, setCard] = useState(0);
+    const [cardIndex, setCardIndex] = useState(0);
     const [history, setHistory] = useState([0]);
     const [backButton, setBackButton] = useState(false);
     const [isInvisible, setIsInvisible] = useState(false);
@@ -22,13 +23,12 @@ export function Flashcard({ cards }: {cards: Array<object>}) {
         isInvisible? setIsInvisible(false) : setIsInvisible(true);
     };
 
-    function nextCard(e) {
-        e.stopPropagation();
+    function nextCard() {
         let max = cards.length - 1;
         let offset = Math.floor(Math.random() * max) + 1;
-        let newCard: number = card + offset;
+        let newCard: number = cardIndex + offset;
         if (newCard > max) {newCard = newCard - cards.length}
-        setCard(newCard);
+        setCardIndex(newCard);
         setIsTitle(true);
         setHistory([...history, newCard]);
         setBackButton(true);
@@ -39,29 +39,51 @@ export function Flashcard({ cards }: {cards: Array<object>}) {
         setIsTitle(true);
         if (history.length < 2) {return null}
         let currentCard = history.length - 1
-        setCard(history[currentCard - 1])
+        setCardIndex(history[currentCard - 1])
         let newHistory = history.toSpliced(-1, 1)
         setHistory(newHistory);
         if (newHistory.length < 2) {setBackButton(false)}
     }
 
+    function hitCard(e) {
+        e.stopPropagation();
+        const cardId = card.id;
+        addHit(userId, cardId);
+        addFlip(userId, cardId);
+        nextCard();
+    }
+
+    function missCard(e) {
+        e.stopPropagation();
+        const cardId = card.id;
+        addMiss(userId, cardId);
+        nextCard();
+    }
+
+    function flipCard(e) {
+        e.stopPropagation();
+        const cardId = card.id;
+        addFlip(userId, cardId);
+        nextCard();
+    }
+
     return (
-        <div className="flex relative flex-col min-h-[30vh] flex-grow items-center justify-between text-3xl rounded-xl" onClick={handleClick}>
-            <div className="absolute top-0 right-1 opacity-40 hover:opacity-100" onClick={handleInvisible}>
+        <div className={cn("flex relative flex-col min-h-[30vh] flex-grow items-center justify-between text-3xl rounded-xl", {'pointer-events-none, opacity-60': isDisabled})} onClick={handleClick}>
+            <div className="absolute top-1 right-2 opacity-40 hover:opacity-100" onClick={handleInvisible}>
                 {isInvisible ? <EyeIcon className="opacity-40 hover:opacity-100"/> : <EyeOffIcon/>}
                 </div>
             <div className="flex flex-row flex-grow items-center justify-between w-full overflow-hidden">
-                <Button variant={"ghost"} size={"lg"} className={clsx('disabled:opacity-0', {'opacity-0 hover:opacity-100': isInvisible})} onClick={lastCard} disabled={!backButton}><ArrowLeft className="h-10 w-10"/></Button>
+                <Button variant={"ghost"} size={"lg"} className={cn('disabled:opacity-0', {'opacity-0 hover:opacity-100': isInvisible})} onClick={lastCard} disabled={!backButton}><ArrowLeft className="h-10 w-10"/></Button>
                 <div className="flex flex-row flex-grow items-center justify-center">
                     <div className="p-4 items-center overflow-auto select-none">
-                        {isTitle? cards[card].front : cards[card].back}
+                        {cards.length === 0 ? <div className="flex text-center w-56 opacity-40 text-md">This deck has no cards yet. Add cards in the editor.</div> : (isTitle? cards[cardIndex].front : cards[cardIndex].back)}
                     </div>
                 </div>
-                <Button variant={"ghost"} size={"lg"} className={isInvisible ? 'opacity-0 hover:opacity-100' : ''} onClick={nextCard}><ArrowRight className="h-10 w-10"/></Button>
+                <Button variant={"ghost"} size={"lg"} className={isInvisible ? 'opacity-0 hover:opacity-100' : ''} onClick={flipCard}><ArrowRight className="h-10 w-10"/></Button>
             </div>
             <div className="flex flex-row justify-center h-[10vh]">
-                    <Button variant={"ghost"} size={"lg"} className={isInvisible ? 'opacity-0 hover:opacity-100' : ''} onClick={nextCard}><XIcon className="h-10 w-10"/></Button>
-                    <Button variant={"ghost"} size={"lg"} className={isInvisible ? 'opacity-0 hover:opacity-100' : ''} onClick={nextCard}><CheckIcon className="h-10 w-10"/></Button>
+                    <Button variant={"ghost"} size={"lg"} className={isInvisible ? 'opacity-0 hover:opacity-100' : ''} onClick={missCard}><XIcon className="h-10 w-10"/></Button>
+                    <Button variant={"ghost"} size={"lg"} className={isInvisible ? 'opacity-0 hover:opacity-100' : ''} onClick={hitCard}><CheckIcon className="h-10 w-10"/></Button>
             </div>
         </div>
     )

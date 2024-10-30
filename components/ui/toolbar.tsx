@@ -26,7 +26,6 @@ export function Toolbar({ decks, workspace, deck, userId }: {decks: Array<object
 
     function handleDelete() {
         deleteDeck(deck.id);
-        console.log('Deck deleted.');
         redirect('/editor');
     }
 
@@ -41,7 +40,7 @@ export function Toolbar({ decks, workspace, deck, userId }: {decks: Array<object
                     { decks ? <DeckList decks={decks} workspace={workspace}/> : "You don't have any decks, create one in the editor."}
                 </div>
                 <div className="flex justify-center items-center bg-border h-[1px]"><div className='flex z-10 rounded-lg opacity-50 p-4 hover:opacity-100 cursor-row-resize'><GripHorizontalIcon className='w-4 h-4' /></div></div>
-                <div className="flex flex-col basis-1/2 px-2 py-4 gap-2">
+                <div className={cn("flex flex-col basis-1/2 px-2 py-4 gap-2", {'hidden': workspace === 'study'})}>
                     <AddDeckDialog handleClick={handleCreate}><Button variant={'nav'} className='gap-4'><PlusIcon className='w-4 h-4 mb-[2px]'/>Add Deck</Button></AddDeckDialog>
                     <UpdateDeckDialog activeDeck={deck} handleClick={handleUpdate}><Button variant={'nav'} className='gap-4'><RefreshCwIcon className='w-4 h-4 mb-[2px]'/>Update Deck</Button></UpdateDeckDialog>
                     <DeleteDeckDialog handleClick={handleDelete}><Button variant={'nav'} className='gap-4'><Trash2Icon className='w-4 h-4 mb-[2px]'/>Delete Deck</Button></DeleteDeckDialog>

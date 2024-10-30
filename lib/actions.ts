@@ -4,7 +4,7 @@ import { desc, sql } from "drizzle-orm"
 import { revalidatePath } from "next/cache";
 import { db } from "@/db";
 import { not, eq } from 'drizzle-orm'
-import { cardsTable, decksTable } from "@/db/schema";
+import { cardsTable, decksTable, hitsTable, flipsTable } from "@/db/schema";
 import { redirect } from "next/navigation";
 
 export async function updatePublic(deckId: number) {
@@ -99,8 +99,6 @@ export async function updateDeck(formData: FormData) {
   const tags = formData.get('tags') as string;
   const deckId = formData.get('deckId');
 
-  console.log(description)
-
   try {
     await db.update(decksTable).set({ name: name, description: description, tags: tags }).where(eq(decksTable.id, deckId))
   } catch(error) {
@@ -109,4 +107,35 @@ export async function updateDeck(formData: FormData) {
     };
   }
   revalidatePath('/editor');
+}
+
+export async function addHit(userId: string, cardId: number) {
+  try {
+    await db.insert(hitsTable).values({card: cardId, user: userId, type: 'hit'})
+  } catch(error) {
+    return {
+      message: 'Database Error: Failed to add hit.'
+    };
+  }
+}
+
+export async function addMiss(userId: string, cardId: number) {
+  try {
+    await db.insert(hitsTable).values({card: cardId, user: userId, type: 'miss'})
+  } catch(error) {
+    return {
+      message: 'Database Error: Failed to add miss.'
+    };
+  }
+}
+
+
+export async function addFlip(userId: string, cardId: number) {
+  try {
+    await db.insert(flipsTable).values({card: cardId, user: userId})
+  } catch(error) {
+    return {
+      message: 'Database Error: Failed to add flip.'
+    };
+  }
 }
