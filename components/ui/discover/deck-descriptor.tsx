@@ -16,7 +16,7 @@ export function DeckDescriptor({ activeDeck, reviews, userId }: {activeDeck: obj
                         <StarIcon fill="white" className="h-5 w-5"/>
                         <StarIcon className="h-5 w-5"/>
                     </div>
-                    <div className="flex text-xs mt-[1px]">(21 reviews)</div>
+                    <div className="flex text-xs mt-[1px]">{`(${reviews.length} review${reviews.length !== 1 ? 's' : ''})`}</div>
                 </div>
                 <div className="flex flex-col my-6">
                     <h3 className="font-light text-sm">Created by: Hank Hill</h3>
