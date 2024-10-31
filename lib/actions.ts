@@ -4,7 +4,7 @@ import { desc, sql } from "drizzle-orm"
 import { revalidatePath } from "next/cache";
 import { db } from "@/db";
 import { not, eq } from 'drizzle-orm'
-import { cardsTable, decksTable, hitsTable, flipsTable } from "@/db/schema";
+import { cardsTable, decksTable, hitsTable, flipsTable, reviewsTable } from "@/db/schema";
 import { redirect } from "next/navigation";
 
 export async function updatePublic(deckId: number) {
@@ -138,4 +138,25 @@ export async function addFlip(userId: string, cardId: number) {
       message: 'Database Error: Failed to add flip.'
     };
   }
+}
+
+
+export async function addReview(formData: FormData) {
+
+  const body = formData.get('body') as string;
+  const deckId = formData.get('deck') as string;
+  const user = formData.get('user') as string;
+
+  console.log(body);
+  console.log(deckId);
+  console.log(user);
+
+  try {
+    await db.insert(reviewsTable).values({deck: deckId, user: user, body: body, rating: 5})
+  } catch(error) {
+    return {
+      message: 'Database Error: Failed to create review.'
+    };
+  }
+  revalidatePath('/discover/browse');
 }

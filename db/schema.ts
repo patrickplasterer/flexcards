@@ -43,8 +43,8 @@ export const decksTable = pgTable("decks", {
 export const reviewsTable = pgTable("reviews", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
   user: varchar({ length: 255 }).notNull(),
-  deckId: integer("deck").references(() => decksTable.id),
+  deck: integer().references(() => decksTable.id),
+  body: varchar({ length: 1000 }).notNull(),
+  rating: integer().notNull(),
   createdOn: timestamp().notNull().defaultNow(),
-  stars: integer().notNull(),
-  text: varchar({ length: 1000 }).notNull()
 });

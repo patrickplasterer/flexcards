@@ -1,7 +1,9 @@
 import { StarIcon } from "lucide-react"
 import { Button } from "../button"
+import { ReviewList } from "./review-list"
+import { ReviewForm } from "./review-form"
 
-export function DeckDescriptor({ activeDeck }: {activeDeck: object}) {
+export function DeckDescriptor({ activeDeck, reviews, userId }: {activeDeck: object, reviews: Array<object>, userId: string}) {
     return (
         <div className="flex flex-col grow rounded-xl w-full p-6">
             <h1 className="font-bold text-2xl mb-6">{activeDeck?.name ?? ''}</h1>
@@ -24,7 +26,10 @@ export function DeckDescriptor({ activeDeck }: {activeDeck: object}) {
                 <h3 className="font-light text-sm">Tags: #computerscience, #HTML, #coding</h3>
             </div>
             <p className="mt-1 text-md overflow-hidden line-clamp-4 mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, numquam quidem? Reprehenderit commodi, ullam id, aliquid perferendis minima tempore soluta cupiditate quis velit incidunt odit temporibus fugiat libero dolorum, voluptas omnis fuga vero reiciendis. Totam assumenda dignissimos veritatis, soluta itaque rerum voluptatibus sint facere sapiente debitis quis a harum nihil omnis iste, recusandae voluptate nam nisi repudiandae corrupti. Facilis cumque omnis, doloremque laboriosam ex expedita, nostrum quaerat sint ducimus reprehenderit aut pariatur fuga dolor, nam quibusdam reiciendis. Placeat voluptas, magnam optio harum numquam, maxime exercitationem dicta dolorem aliquid vero saepe nesciunt odit ipsum incidunt obcaecati fugit unde, perspiciatis voluptate omnis!</p>
-            <Button variant='default'>Add to My Decks</Button>
+            <Button variant='default' size='lg'>Add to My Decks</Button>
+            <h2 className="mt-4">Reviews:</h2>
+            <ReviewForm deckId={activeDeck.id} userId={userId}/>
+            <ReviewList reviews={reviews}/>
         </div>
     )
 }

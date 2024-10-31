@@ -1,0 +1,1 @@
+ALTER TABLE "reviews" RENAME COLUMN "stars" TO "rating";

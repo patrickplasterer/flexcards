@@ -29,6 +29,27 @@
       "when": 1730329626813,
       "tag": "0003_clumsy_saracen",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1730331090338,
+      "tag": "0004_boring_luckman",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1730331158434,
+      "tag": "0005_wonderful_bullseye",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1730332677119,
+      "tag": "0006_flat_scrambler",
+      "breakpoints": true
     }
   ]
 }

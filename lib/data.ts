@@ -2,7 +2,7 @@
 
 import { eq, desc } from "drizzle-orm";
 import { db } from "@/db";
-import { cardsTable, decksTable } from "@/db/schema";
+import { cardsTable, decksTable, reviewsTable } from "@/db/schema";
 import { currentUser } from "@clerk/nextjs/server"
 
 export async function getUser() {
@@ -28,4 +28,10 @@ export async function getCards(deckId: number) {
     const cards = await db.select({ id: cardsTable.id, front: cardsTable.front, back: cardsTable.back, deck: cardsTable.deck}).from(cardsTable).where(eq(cardsTable.deck, deckId)).orderBy(desc(cardsTable.createdOn))
     
     return(cards);
+}
+
+export async function getReviews(deckId: number) {
+    const reviews = await db.select({ id: reviewsTable.id, body: reviewsTable.body, rating: reviewsTable.rating, user: reviewsTable.user}).from(reviewsTable).where(eq(reviewsTable.deck, deckId)).orderBy(desc(reviewsTable.createdOn))
+    
+    return(reviews);
 }
