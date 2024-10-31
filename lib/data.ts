@@ -3,7 +3,7 @@
 import { eq, desc } from "drizzle-orm";
 import { db } from "@/db";
 import { cardsTable, decksTable, reviewsTable } from "@/db/schema";
-import { currentUser } from "@clerk/nextjs/server"
+import { clerkClient, currentUser } from "@clerk/nextjs/server"
 
 export async function getUser() {
 
@@ -30,7 +30,14 @@ export async function getCards(deckId: number) {
     return(cards);
 }
 
+export async function getAllUsers() {
+    const allUsers = (await clerkClient()).users
+    
+    return(allUsers);
+}
+
 export async function getReviews(deckId: number) {
+    const users = getUser
     const reviews = await db.select({ id: reviewsTable.id, body: reviewsTable.body, rating: reviewsTable.rating, user: reviewsTable.user}).from(reviewsTable).where(eq(reviewsTable.deck, deckId)).orderBy(desc(reviewsTable.createdOn))
     
     return(reviews);

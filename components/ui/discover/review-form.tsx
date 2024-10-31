@@ -16,7 +16,7 @@ export function ReviewForm({ deckId, userId }: {deckId: number, userId: string})
 
     return (
         <div className="flex flex-col h-30 rounded-xl border-2 w-full py-2 px-3">
-            <div className="flex text-md mb-2">Add a review:</div>
+            <div className="flex font-bold text-md mb-2">Patrick Plasterer</div>
             <form className='flex flex-col gap-4' id='add-review' action={handleSubmit}>
                 <div className="flex mt-1 mb-1">
                     <StarIcon fill="white" className="h-4 w-4"/>

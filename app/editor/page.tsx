@@ -23,7 +23,7 @@ export default async function Page({ searchParams }) {
     const cards = await getCards(deck.id);
     let card = cards.find(({ id }) => id == cardId)
     card = card ? card : cards[0];
-    if (!deckId) redirect(`/study?deck=${deck.id}&card=${card.id}`);
+    if (!deckId) redirect(`/editor?deck=${deck.id}&card=${card.id}`);
 
     return (
         <Workspace>
