@@ -32,12 +32,12 @@ export async function getCards(deckId: number) {
 
 export async function getAllUsers() {
     const allUsers = (await clerkClient()).users
-    
+
     return(allUsers);
 }
 
 export async function getReviews(deckId: number) {
-    const users = getUser
+    const users = getAllUsers();
     const reviews = await db.select({ id: reviewsTable.id, body: reviewsTable.body, rating: reviewsTable.rating, user: reviewsTable.user}).from(reviewsTable).where(eq(reviewsTable.deck, deckId)).orderBy(desc(reviewsTable.createdOn))
     
     return(reviews);
