@@ -1,6 +1,9 @@
 import Link from "next/link"
+import { redirect } from "next/navigation"
+
 
 export default function Page() {
+    redirect('/discover/browser')
     return (
         <div className="flex flex-col h-dvh w-full p-12 overflow-auto">
             <div className="flex flex-col text-9xl md:text-[8rem] font-black leading-none mb-8 mr-10">Discover new decks</div>

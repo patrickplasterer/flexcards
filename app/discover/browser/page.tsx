@@ -24,10 +24,10 @@ export default async function Page({ searchParams }) {
 
     return (
         <Workspace>
-              <SubtlePanel position='1'>
+              {/* <SubtlePanel position='1'>
                 <DiscoverToolbar/>
-              </SubtlePanel>
-              <SubtlePanel position='2'>
+              </SubtlePanel> */}
+              <SubtlePanel position='1'>
                 <PublicDeckList decks={decks}/>
               </SubtlePanel>
               <DeckDescriptor activeDeck={deck} reviews={reviews} userId={user.id}/>

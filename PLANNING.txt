@@ -1,8 +1,29 @@
 
-The study deck components:
+Pre-launch to do:
 
--Page
--StudyDeck
--DeckList
--DeckButton
--Flashcard
+-Make it completely type safe
+-move the dependencies to their right section
+-Write a beginner test codebase
+-Write Zod schemas and implement them
+-Write error handling
+-Clean up unused UI
+-Create a users table in the dev database and figure out how to create the hook to Clerk
+-Push to GitHub, remove the files that shouldn't be there with that third party library
+-Finish the add review form
+
+
+Launch:
+
+-learn how to push to prod
+-Learn how to have a dev and prod database
+-Create the prod Postgres database and use drizzle migrations to populate the tables and hook up the database to the codebase.
+-Pull the GitHub repo and launch the server.
+-Learn how to SSH into the server so it can live under the TV.
+
+
+Next:
+
+-Write a README for the GitHub repo
+-Implement draggable sections
+-Write a new cover letter
+-Start applying to jobs

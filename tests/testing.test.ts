@@ -1,8 +1,16 @@
-import { expect, test } from 'vitest';
+import { expect, it, describe } from 'vitest';
 import { testInput } from '@/test_examples/testing';
 
-test('Should always return the input', () => {
+describe('testInput', () => {
+    
+    it('should always return the input', () => {
+        expect(testInput('arg')).toBe('arg');
+    });
 
-    expect(testInput('arg')).toBe('arg');
+    it('should always return undefined when using secondarg', () => {
+        expect(testInput('secondarg')).toBe(undefined);
+    })
+    
+    
+});
 
-})

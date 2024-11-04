@@ -1,11 +1,13 @@
 import Image from "next/image";
-import snapshot from '@/public/snapshot.png'
+import study from '@/public/study.png'
+import editor from '@/public/editor.png'
+import discover from '@/public/discover.png'
 import Link from "next/link";
 
 export default function Home() {
   return (
-   <div className="flex flex-col h-dvh w-full p-8 overflow-auto">
-      <div className="flex flex-col basis-[40vh] items-center justify-center mb-10">
+   <div className="flex flex-col h-dvh w-full overflow-auto scrollbar-thin scrollbar-track-transparent scrollbar-thumb-accent">
+      <div className="flex flex-col min-h-[45vh] items-center justify-start mb-10">
         <div className="flex flex-col text-4xl md:text-6xl font-black mt-44 mb-20 items-center justify-center">
           <div>
             flexcards helps you <span className="bg-highlighter text-black">study</span>.
@@ -16,8 +18,27 @@ export default function Home() {
         Get Started
       </Link>
       </div>
-      <div className="flex flex-col basis-[40vh] px-40">
-        <Image src={snapshot} alt='Picture of app'/>
+      <div className="flex flex-col bg-zinc-900">
+        <div className="flex flex-col px-36 mt-6 gap-6 items-center text-4xl justify-center">
+          <div className="flex items-center justify-center gap-6">
+            <div className="flex items-center justify-center font-bold">
+              Create decks of virtual flashcards.
+            </div>
+            <Image src={editor} alt='Picture of app' className="w-[50vw] border-4 rounded-xl"/>
+          </div>
+          <div className="flex items-center justify-center gap-6">
+            <Image src={study} alt='Picture of app' className="w-[50vw] border-4 rounded-xl"/>
+            <div className="flex items-center justify-center font-bold">
+              Study your decks with an interactive flashcard viewer.
+            </div>
+          </div>
+          <div className="flex items-center justify-center gap-6">
+            <div className="flex items-center justify-center font-bold">
+              Share your decks and discover other shared decks.
+            </div>
+            <Image src={discover} alt='Picture of app' className="w-[50vw] border-4 rounded-xl"/>
+          </div>
+        </div>
       </div>
    </div>
   );

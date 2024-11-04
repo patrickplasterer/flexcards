@@ -18,7 +18,7 @@ export function ReviewCard({ review }: {review: object}) {
 
     return (
         <div className="flex flex-col rounded-xl border-2 w-full py-3 px-4">
-            <h1 className="font-bold text-sm">{review.user}</h1>
+            {/* <h1 className="font-bold text-sm">{review.user}</h1> */}
             <div className="flex mt-2 mb-2">
                 {stars}
             </div>

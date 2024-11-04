@@ -34,9 +34,9 @@ export function CardList({ cards, isDisabled }: {cards: Array<object>, isDisable
             <div className="bg-border h-[1px]"></div>
             <div className="flex flex-col p-2 overflow-hidden">
                 <div className="flex flex-col">
-                    <div className="flex w-full border-2 rounded-[0.5rem] p-1">
+                    {/* <div className="flex w-full border-2 rounded-[0.5rem] p-1">
                         Search
-                    </div>
+                    </div> */}
                 </div>
                 <div className="flex flex-col flex-grow p-2 gap-2 overflow-auto scrollbar-thin scrollbar-track-transparent scrollbar-thumb-accent">
                     {cards.length !== 0 ? cards.map((card) => {
