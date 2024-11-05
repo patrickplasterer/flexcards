@@ -1,10 +1,11 @@
 "use client"
 
-import { StarIcon, StarHalfIcon } from "lucide-react"
+import { StarIcon} from "lucide-react"
 import { Input } from "../input";
 import { Label } from "../label";
 import { Button } from "../button";
 import { addReview } from "@/lib/actions";
+import * as React from 'react'
 
 export function ReviewForm({ deckId, userId }: {deckId: number, userId: string}) {
 

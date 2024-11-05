@@ -1,9 +1,10 @@
 'use client'
 
-import { SaveIcon, Trash2Icon, SquarePlusIcon, UsersIcon, DownloadIcon, GripHorizontalIcon, GripVerticalIcon } from 'lucide-react'
+import { Trash2Icon, DownloadIcon, GripHorizontalIcon, GripVerticalIcon } from 'lucide-react'
 import { Button } from '../button'
 import { GenericChart, GenericLineChart } from '../generic-chart'
 import { Card } from './card'
+import * as React from 'react'
 
 
 export function AnalyticsPanel() {

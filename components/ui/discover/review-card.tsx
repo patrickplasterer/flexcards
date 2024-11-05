@@ -8,7 +8,7 @@ export function ReviewCard({ review }: {review: object}) {
     
     const rating = review.rating
 
-    let stars = [] as Array<React.ReactNode>;
+    const stars = [] as Array<React.ReactNode>;
     for (let i = 1; i <= rating; i++) {
             stars.push(<StarIcon fill="white" className="h-2.5 w-2.5"/>)
     }

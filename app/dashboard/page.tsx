@@ -1,9 +1,10 @@
 import Link from "next/link"
+import * as React from 'react'
 
 export default function Page() {
     return (
         <div className="flex flex-col h-dvh w-full p-12 overflow-auto">
-            <div className="flex flex-col text-9xl md:text-[8rem] font-black leading-none mb-8 mt-6">Let's learn something.</div>
+            <div className="flex flex-col text-9xl md:text-[8rem] font-black leading-none mb-8 mt-6">Let&apos;s learn something.</div>
             <div className="flex flex-col text-6xl md:text-8xl leading-none">
                 <div className="mb-6 leading-snug">
                     <Link href='/study' className="inline-flex p-1 flex-col items-center justify-center underline underline-offset-[1.5rem] hover:bg-highlighter hover:text-black hover:bg-amber-600">Study your decks</Link>, 

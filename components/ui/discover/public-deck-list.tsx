@@ -1,15 +1,10 @@
 "use client"
 
-import { cn } from "@/lib/utils";
-import { useRouter, useSearchParams } from "next/navigation";
 import { DeckPreview } from "./deck-preview";
+import { Deck } from "@/db/types";
+import * as React from 'react'
 
-export function PublicDeckList({ decks }: {decks: Array<object>}) {
-    
-    const router = useRouter();
-    const searchParams = useSearchParams();
-    const deckId = searchParams.get('deck');
-
+export function PublicDeckList({ decks }: {decks: Array<Deck>}) {
 
     return (
         <div className="flex flex-col w-[20vw] flex-grow overflow-hidden">

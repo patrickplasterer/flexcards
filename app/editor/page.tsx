@@ -5,23 +5,24 @@ import { CardList } from "@/components/ui/editor/card-list";
 import { CardEditor } from "@/components/ui/editor/card-editor";
 import { SubtlePanel } from "@/components/ui/subtle-panel";
 import { redirect } from "next/navigation";
+import * as React from 'react'
 
-export default async function Page({ searchParams }) {
+export default async function Page({ searchParams }: {searchParams: { [key: string]: string | string[] | undefined }}) {
     let isCardListDisabled = false;
     let isCardEditorDisabled = false;
 
-    let deckId = searchParams?.deck;
+    const deckId = searchParams?.deck;
     if(!deckId) {isCardListDisabled = true};
 
-    let cardId = searchParams?.card;
+    const cardId = searchParams?.card;
     if(!cardId) {isCardEditorDisabled = true};
     
     const user = await getUser();
     const decks = await getDecks(user.id);
-    let deck = decks.find(({ id }) => id == deckId)
+    let deck = decks.find(({ id }) => id == Number(deckId))
     deck = deck ? deck : decks[0]
     const cards = await getCards(deck.id);
-    let card = cards.find(({ id }) => id == cardId)
+    let card = cards.find(({ id }) => id == Number(cardId))
     card = card ? card : cards[0];
     if (!deckId) redirect(`/editor?deck=${deck.id}&card=${card.id}`);
 

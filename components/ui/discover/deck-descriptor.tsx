@@ -1,9 +1,11 @@
 import { StarIcon } from "lucide-react"
-import { Button } from "../button"
-import { ReviewList } from "./review-list"
 import { ReviewForm } from "./review-form"
+import { ReviewList } from "./review-list"
+import * as React from 'react'
+import { Deck } from "@/db/types"
 
-export function DeckDescriptor({ activeDeck, reviews, userId }: {activeDeck: object, reviews: Array<object>, userId: string}) {
+
+export function DeckDescriptor({ activeDeck, reviews, userId }: {activeDeck: Deck, reviews: Array<object>, userId: string}) {
     return (
         <div className="flex flex-col grow rounded-xl w-full p-6">
             <div className="flex flex-col basis-1/2">

@@ -1,15 +1,15 @@
 "use client"
 
-import clsx from "clsx"
 import { ArrowLeftToLineIcon, ArrowRightToLineIcon, GripVerticalIcon } from "lucide-react"
 import { useState } from "react"
 import { cn } from "@/lib/utils"
+import * as React from 'react'
 
-export function CollapsingPanel({ children }) {
+export function CollapsingPanel({ children }: {children: React.ReactNode}) {
     
     const [isHidden, setIsHidden] = useState(false)
 
-    function handleClick(e) {
+    function handleClick(e: React.MouseEvent<HTMLDivElement>) {
         e.stopPropagation();
         setIsHidden(!isHidden);
     }

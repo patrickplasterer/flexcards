@@ -1,26 +1,23 @@
-import { Workspace } from "@/components/ui/workspace";
-import { Toolbar } from "@/components/ui/toolbar";
-import { SubtlePanel } from "@/components/ui/subtle-panel";
-import { getPublicDecks } from "@/lib/data";
 import { DeckDescriptor } from "@/components/ui/discover/deck-descriptor";
 import { PublicDeckList } from "@/components/ui/discover/public-deck-list";
-import { DiscoverToolbar } from "@/components/ui/discover-toolbar";
+import { SubtlePanel } from "@/components/ui/subtle-panel";
+import { Workspace } from "@/components/ui/workspace";
+import { getPublicDecks, getReviews, getUser } from "@/lib/data";
 import { redirect } from "next/navigation";
-import { getReviews } from "@/lib/data";
-import { getUser } from "@/lib/data";
+import * as React from 'react'
 
 
-export default async function Page({ searchParams }) {
+export default async function Page({ searchParams }: {searchParams: { [key: string]: string | string[] | undefined }}) {
 
-    let deckId = searchParams.deck;
+    const deckId = searchParams?.deck;
     const user = await getUser();
     const decks = await getPublicDecks();
-    let deck = decks.find(({ id }) => id == deckId)
+    let deck = decks.find(({ id }) => id == Number(deckId))
     if (!deckId) {
         deck = decks[0];
         redirect(`/discover/browser?deck=${deck.id}`);
     };
-    const reviews = await getReviews(deck.id);
+    const reviews = await getReviews(deck?.id);
 
     return (
         <Workspace>
@@ -30,7 +27,7 @@ export default async function Page({ searchParams }) {
               <SubtlePanel position='1'>
                 <PublicDeckList decks={decks}/>
               </SubtlePanel>
-              <DeckDescriptor activeDeck={deck} reviews={reviews} userId={user.id}/>
+              { deck ? <DeckDescriptor activeDeck={deck} reviews={reviews} userId={user.id}/> : 'Select a deck' }
         </Workspace>
     );
 

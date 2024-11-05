@@ -1,6 +1,5 @@
 'use server'
 
-import { desc, sql } from "drizzle-orm"
 import { revalidatePath } from "next/cache";
 import { db } from "@/db";
 import { not, eq } from 'drizzle-orm'
@@ -10,7 +9,9 @@ import { redirect } from "next/navigation";
 export async function updatePublic(deckId: number) {
 
   try {
-    const decks = await db.update(decksTable).set({ isPublic: not(decksTable.isPublic) }).where(eq(decksTable.id, deckId))
+
+    await db.update(decksTable).set({ isPublic: not(decksTable.isPublic) }).where(eq(decksTable.id, deckId))
+
   } catch(error) {
     return {
       message: 'Database Error: Failed to update isPublic.'
