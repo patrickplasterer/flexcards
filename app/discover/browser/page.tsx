@@ -12,12 +12,8 @@ export default async function Page({ searchParams }: {searchParams: { [key: stri
     const deckId = searchParams?.deck;
     const user = await getUser();
     const decks = await getPublicDecks();
-    let deck = decks.find(({ id }) => id == Number(deckId))
-    if (!deckId) {
-        deck = decks[0];
-        redirect(`/discover/browser?deck=${deck.id}`);
-    };
-    const reviews = await getReviews(deck?.id);
+    const deck = (deckId && decks) ? decks.find(({ id }) => id == Number(deckId)) : undefined
+    const reviews = deck ? await getReviews(deck.id) : undefined;
 
     return (
         <Workspace>
@@ -27,7 +23,7 @@ export default async function Page({ searchParams }: {searchParams: { [key: stri
               <SubtlePanel position='1'>
                 <PublicDeckList decks={decks}/>
               </SubtlePanel>
-              { deck ? <DeckDescriptor activeDeck={deck} reviews={reviews} userId={user.id}/> : 'Select a deck' }
+              { deck ? <DeckDescriptor activeDeck={deck} reviews={reviews} userId={user.id}/> : <div className="flex w-full items-center justify-center">Select a deck to continue.</div>}
         </Workspace>
     );
 

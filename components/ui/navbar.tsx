@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { RaspberryPiLogo } from "../svg/raspberry-pi-logo";
+import * as React from 'react';
 
 function NavLink({
   href,
@@ -47,7 +48,7 @@ export function Navbar() {
           {/* <NavLink href="/analytics" title="Analytics" pathName={pathName} /> */}
         </div>
         <div className="flex gap-4 items-center">
-          <div className="flex items-center text-xs font-mono gap-2 opacity-70">powered by a raspberry pi<RaspberryPiLogo className='w-4 h-4 mb-[1px]'/></div>
+          <div className="flex items-center text-xs font-mono gap-2 opacity-70">powered by raspberry pi<RaspberryPiLogo className='w-4 h-4 mb-[1px]'/></div>
           {/* <div className="flex">Help</div> */}
           <div className="flex mb-[3px]">
             <SignedIn>

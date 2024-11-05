@@ -3,3 +3,5 @@ To remember about this project:
 -Using the "offset" to randomly select a next card to avoid the awkward logic of when the randomly selected next card is the same as the current one.
 
 -Showing one textarea at a time for making new cards because the user only interacts with one at a time so why show several?
+
+moshongito pw: testingPassword

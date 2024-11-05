@@ -83,12 +83,11 @@ export async function createDeck(formData: FormData) {
 export async function deleteDeck(deckId: number) {
 
   try {
-    await db.delete(decksTable).where(eq(decksTable.id, deckId))
+    await db.delete(cardsTable).where(eq(cardsTable.deck, deckId));
+    await db.delete(decksTable).where(eq(decksTable.id, deckId));
   } catch(error) {
-    return {
-      message: 'Database Error: Failed to delete deck.'
+      console.log(error.message)
     };
-  }
   revalidatePath('/editor');
   redirect('/editor')
 }

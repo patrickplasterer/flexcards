@@ -7,14 +7,22 @@ import { cn } from "@/lib/utils";
 import { addHit, addMiss, addFlip } from "@/lib/actions";
 import * as React from 'react'
 import { Card } from "@/db/types";
+import { useSearchParams } from "next/navigation";
 
 
-export function Flashcard({ cards, userId, card, isDisabled }: {cards: Array<Card>, userId: string, card: Card, isDisabled: boolean}) {
+export function Flashcard({ cards, userId}: {cards: Array<Card>, userId: string}) {
     const [isTitle, setIsTitle] = useState(true);
     const [cardIndex, setCardIndex] = useState(0);
     const [history, setHistory] = useState([0]);
     const [backButton, setBackButton] = useState(false);
     const [isInvisible, setIsInvisible] = useState(false);
+    
+    const searchParams = useSearchParams();
+    const deckId = searchParams.get('deck');
+    let isDisabled = true;
+    if (deckId) {isDisabled = false}
+
+    const card = cards[0];
 
     function handleClick() {
         setIsTitle(!isTitle);
@@ -70,7 +78,7 @@ export function Flashcard({ cards, userId, card, isDisabled }: {cards: Array<Car
     }
 
     return (
-        <div className={cn("flex relative flex-col min-h-[30vh] flex-grow items-center justify-between text-3xl rounded-xl", {'pointer-events-none, opacity-60': isDisabled})} onClick={handleClick}>
+        <div className={cn("flex relative flex-col w-full flex-grow items-center justify-between text-3xl rounded-xl p-1", {'pointer-events-none, opacity-60': isDisabled})} onClick={handleClick}>
             <div className="absolute top-1 right-2 opacity-40 hover:opacity-100" onClick={handleInvisible}>
                 {isInvisible ? <EyeIcon className="opacity-40 hover:opacity-100"/> : <EyeOffIcon/>}
             </div>

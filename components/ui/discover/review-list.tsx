@@ -1,16 +1,12 @@
 "use client"
 
-import { cn } from "@/lib/utils";
-import { useRouter, useSearchParams } from "next/navigation";
 import { ReviewCard } from "./review-card";
+import * as React from 'react'
+import { Review } from "@/db/types";
 
 
-export function ReviewList({ reviews }: {reviews: Array<object>}) {
+export function ReviewList({ reviews }: {reviews: Array<Review>}) {
     
-    const router = useRouter();
-    const searchParams = useSearchParams();
-    const deckId = searchParams.get('deck');
-
     return (
         <div className="flex flex-col flex-grow overflow-auto">
             <div className="flex flex-col overflow-hidden">

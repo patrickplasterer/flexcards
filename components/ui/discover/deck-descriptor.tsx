@@ -2,13 +2,13 @@ import { StarIcon } from "lucide-react"
 import { ReviewForm } from "./review-form"
 import { ReviewList } from "./review-list"
 import * as React from 'react'
-import { Deck } from "@/db/types"
+import { Deck, Review } from "@/db/types"
 
 
-export function DeckDescriptor({ activeDeck, reviews, userId }: {activeDeck: Deck, reviews: Array<object>, userId: string}) {
+export function DeckDescriptor({ activeDeck, reviews, userId }: {activeDeck: Deck, reviews: Array<Review>, userId: string}) {
     return (
         <div className="flex flex-col grow rounded-xl w-full p-6">
-            <div className="flex flex-col basis-1/2">
+            <div className="flex flex-col">
                 <h1 className="font-bold text-2xl mb-6">{activeDeck?.name ?? ''}</h1>
                 <div className="flex my-3 gap-4 items-center">
                     <div className="flex gap-1">

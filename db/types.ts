@@ -10,5 +10,13 @@ export interface Card {
     id: number,
     front: string,
     back: string,
-    deck: number | null
+    deck: number
+}
+
+export interface Review {
+    id: number,
+    user: string,
+    deck: string,
+    body: string,
+    rating: number
 }

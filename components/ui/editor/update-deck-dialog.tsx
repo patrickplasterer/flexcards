@@ -3,7 +3,6 @@
   Dialog,
   DialogClose,
   DialogContent,
-  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
@@ -12,6 +11,7 @@
 import { Button } from "../button"
 import { Input } from "../input"
 import { Label } from "../label"
+import * as React from 'react';
  
 export function UpdateDeckDialog({handleClick, activeDeck, children}) {
 

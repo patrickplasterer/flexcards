@@ -1,5 +1,4 @@
-import { integer, pgTable, varchar, pgEnum, timestamp, boolean, check } from "drizzle-orm/pg-core";
-import { sql } from "drizzle-orm";
+import { integer, pgTable, varchar, pgEnum, timestamp, boolean } from "drizzle-orm/pg-core";
 
 
 
@@ -7,7 +6,7 @@ export const cardsTable = pgTable("cards", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
   front: varchar({ length: 3000 }).notNull(),
   back: varchar({ length: 3000 }).notNull(),
-  deck: integer("deck").references(() => decksTable.id),
+  deck: integer("deck").notNull().references(() => decksTable.id),
   createdOn: timestamp().notNull().defaultNow(),
 });
 

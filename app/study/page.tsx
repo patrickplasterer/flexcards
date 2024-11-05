@@ -1,37 +1,28 @@
 import { Workspace } from "@/components/ui/workspace";
 import { CollapsingPanel } from "@/components/ui/collapsing-panel";
-import { Flashcard } from "@/components/ui/flashcard";
-import { getUser, getDecks, getCards } from "@/lib/data";
+import { FlashcardWrapper } from "@/components/ui/flashcard-wrapper";
+import { getUser, getDecks } from "@/lib/data";
 import { Toolbar } from "@/components/ui/toolbar";
-import { redirect } from "next/navigation";
 import * as React from 'react'
 
 
-export default async function Page({ searchParams }: {searchParams: { [key: string]: string | string[] | undefined }}) {
+export default async function Page({ searchParams }: {searchParams: { [key: string]: string | undefined }}) {
   
-  let isFlashcardDisabled = false;
+  
   const deckId = searchParams?.deck;
-  if(!deckId) {isFlashcardDisabled = true};
-
-
   const cardId = searchParams?.card;
 
+
   const user = await getUser();
-  const decks = await getDecks(user.id);
-  let deck = decks.find(({ id }) => id == Number(deckId))
-  deck = deck ? deck : decks[0]
-  const cards = await getCards(deck.id);
-  let card = cards.find(({ id }) => id == Number(cardId))
-  card = card ? card : cards[0]
-  if (!deckId) redirect(`/study?deck=${deck.id}&card=${card.id}`);
+  const decks = await getDecks(user.id)
     
 
     return (
         <Workspace>
           <CollapsingPanel>
-            <Toolbar decks={decks} deck={deck} workspace="study" userId={user.id}/>
+            <Toolbar decks={decks} deckId={deckId} workspace="study" userId={user.id}/>
           </CollapsingPanel>
-          <Flashcard cards={cards} userId={user.id} card={card} isDisabled={isFlashcardDisabled}/>
+          {deckId ? <FlashcardWrapper deckId={deckId} userId={user.id} cardId={cardId}/> : <div className="flex flex-col w-full items-center justify-center">Select a deck to continue</div>}
         </Workspace>
     );
 
