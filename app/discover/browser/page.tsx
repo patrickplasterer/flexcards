@@ -3,7 +3,6 @@ import { PublicDeckList } from "@/components/ui/discover/public-deck-list";
 import { SubtlePanel } from "@/components/ui/subtle-panel";
 import { Workspace } from "@/components/ui/workspace";
 import { getPublicDecks, getReviews, getUser } from "@/lib/data";
-import { redirect } from "next/navigation";
 import * as React from 'react'
 
 

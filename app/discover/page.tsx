@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { redirect } from "next/navigation"
-
+import * as React from 'react';
 
 export default function Page() {
     redirect('/discover/browser')
