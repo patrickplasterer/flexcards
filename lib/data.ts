@@ -9,11 +9,7 @@ import { redirect } from "next/navigation";
 export async function getUser() {
 
     const user = await currentUser();
-    if (user) {
-        return (user);
-    } else {
-        redirect('/sign-in');
-    }
+    return (user);
   
 }
 
