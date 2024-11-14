@@ -32,7 +32,7 @@ export function Navbar() {
   const pathName = usePathname();
 
   return (
-    <div className="flex flex-row justify-start items-center w-full py-2 px-4">
+    <div className="hidden md:flex flex-row justify-start items-center w-full py-2 px-4">
       <Link
         href="/"
         className="flex items-center justify-center mr-6 mb-[2px] font-bold text-lg hover:underline underline-offset-4 decoration-2"

@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import { Navbar } from "@/components/ui/navbar";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
+import * as React from 'react';
 
 
 const geistSans = localFont({
@@ -17,7 +18,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Flashcards",
+  title: "flexcards",
   description: "A simple online flashcard app",
 };
 

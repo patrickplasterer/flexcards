@@ -4,7 +4,6 @@ import { eq, desc } from "drizzle-orm";
 import { db } from "@/db";
 import { cardsTable, decksTable, reviewsTable } from "@/db/schema";
 import { clerkClient, currentUser } from "@clerk/nextjs/server"
-import { redirect } from "next/navigation";
 
 export async function getUser() {
 
