@@ -11,6 +11,6 @@ export default [
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
   pluginReact.configs.flat.recommended,
-  { "rules": { "react/prop-types": "off" } },
+  { "rules": { "react/prop-types": "off", "react/jsx-uses-react": "off", "react/react-in-jsx-scope": "off" } },
   { ignores: ["components/ui/chart"]}
 ];
