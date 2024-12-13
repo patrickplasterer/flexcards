@@ -2,8 +2,8 @@
 
 import { revalidatePath } from "next/cache";
 import { db } from "@/db";
-import { not, eq } from 'drizzle-orm'
-import { cardsTable, decksTable, hitsTable, flipsTable, reviewsTable } from "@/db/schema";
+import { not, eq, and } from 'drizzle-orm'
+import { cardsTable, decksTable, hitsTable, flipsTable, reviewsTable, followsTable } from "@/db/schema";
 import { redirect } from "next/navigation";
 
 export async function updatePublic(deckId: number) {
@@ -97,6 +97,8 @@ export async function updateDeck(formData: FormData) {
   revalidatePath('/editor');
 }
 
+
+
 export async function addHit(userId: string, cardId: number) {
   try {
     await db.insert(hitsTable).values({card: cardId, user: userId, type: 'hit'})
@@ -135,4 +137,23 @@ export async function addReview(formData: FormData) {
     console.log(error);
   }
   revalidatePath('/discover/browse');
+}
+
+export async function createFollow(deckId: number, userId: string) {
+  try {
+    await db.insert(followsTable).values({user: userId, deck: deckId})
+  } catch(error) {
+    console.log(error);
+  }
+  revalidatePath('/discover/browser');
+}
+
+export async function deleteFollow(userId: string, deckId: number) {
+
+  try {
+    await db.delete(followsTable).where(and(eq(followsTable.user, userId), eq(followsTable.deck, deckId)))
+  } catch(error) {
+    console.log(error);
+  }
+  revalidatePath('/discover/browser');
 }

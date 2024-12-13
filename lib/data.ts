@@ -2,7 +2,7 @@
 
 import { eq, desc } from "drizzle-orm";
 import { db } from "@/db";
-import { cardsTable, decksTable, reviewsTable } from "@/db/schema";
+import { cardsTable, decksTable, reviewsTable, followsTable } from "@/db/schema";
 import { clerkClient, currentUser } from "@clerk/nextjs/server"
 
 export async function getUser() {
@@ -20,8 +20,16 @@ export async function getDecks(userId: string) {
     return []; 
 }
 
+export async function getFollowedDecks(userId: string) {
+    if (userId) {
+        const followedDecks = await db.select({ id: decksTable.id, name: decksTable.name, description: decksTable.description, tags: decksTable.tags, isPublic: decksTable.isPublic}).from(followsTable).where(eq(followsTable.user, userId)).leftJoin(decksTable, eq(followsTable.deck, decksTable.id))
+        return(followedDecks);
+    }
+    return []; 
+}
+
 export async function getPublicDecks() {
-    const decks = await db.select({ id: decksTable.id, name: decksTable.name, isPublic: decksTable.isPublic, description: decksTable.description}).from(decksTable).where(eq(decksTable.isPublic, true)).orderBy(desc(decksTable.createdOn))
+    const decks = await db.select({ id: decksTable.id, name: decksTable.name, isPublic: decksTable.isPublic, description: decksTable.description, tags: decksTable.tags}).from(decksTable).where(eq(decksTable.isPublic, true)).orderBy(desc(decksTable.createdOn))
     
     return(decks);
 }

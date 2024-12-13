@@ -47,3 +47,10 @@ export const reviewsTable = pgTable("reviews", {
   rating: integer().notNull(),
   createdOn: timestamp().notNull().defaultNow(),
 });
+
+export const followsTable = pgTable("follows", {
+  id: integer().primaryKey().generatedAlwaysAsIdentity(),
+  user: varchar({ length: 255 }).notNull(),
+  deck: integer().references(() => decksTable.id),
+  createdOn: timestamp().notNull().defaultNow(),
+});

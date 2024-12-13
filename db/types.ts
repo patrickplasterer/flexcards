@@ -3,7 +3,8 @@ export interface Deck {
     id: number,
     name: string,
     isPublic: boolean,
-    description: string | null
+    description: string | null,
+    tags: string
 }
 
 export interface Card {

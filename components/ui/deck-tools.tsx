@@ -13,8 +13,6 @@ import { cn } from '@/lib/utils';
 
 export function DeckTools({ userId, deck, workspace }: {userId: string, deck: Deck | undefined, workspace: string}) {
 
-    console.log(deck)
-
     function handleCreate(formData: FormData) {
         formData.append("userId", userId.toString());
         createDeck(formData);

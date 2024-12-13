@@ -1,7 +1,7 @@
 "use client"
 
 import clsx from "clsx"
-import { ChevronsLeftIcon, ChevronRightIcon, GripVerticalIcon, ChevronLeftIcon } from "lucide-react"
+import { ChevronRightIcon, GripVerticalIcon, ChevronLeftIcon } from "lucide-react"
 import { useState } from "react"
 import { cn } from "@/lib/utils"
 
