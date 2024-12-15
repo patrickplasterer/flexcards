@@ -2,7 +2,7 @@
 import {GripHorizontalIcon} from 'lucide-react'
 import { DeckList } from "./deck-list"
 import * as React from 'react'
-import { Deck } from '@/db/types'
+import { Deck } from '@/db/schema'
 import { DeckTools } from './deck-tools'
 import { FollowingDeckList } from './study/following-deck-list'
 

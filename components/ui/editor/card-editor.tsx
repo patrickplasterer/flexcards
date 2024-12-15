@@ -5,7 +5,7 @@ import { useState } from "react";
 import { createEditor } from "slate";
 import { Editable, Slate, withReact } from "slate-react";
 import * as React from 'react';
-import { Card } from "@/db/types";
+import { Card } from "@/db/schema";
 
 export function CardEditor({ card }: {card: Card}) {
   

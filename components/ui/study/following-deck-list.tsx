@@ -1,6 +1,6 @@
 import { FollowingDeckButton } from './following-deck-button';
 import * as React from 'react'
-import { Deck } from "@/db/types";
+import { Deck } from "@/db/schema";
 
 export async function FollowingDeckList({ userId, workspace, decks }: {userId: string, workspace: string, decks: Array<Deck>}) {
 

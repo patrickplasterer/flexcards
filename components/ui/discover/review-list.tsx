@@ -2,7 +2,7 @@
 
 import { ReviewCard } from "./review-card";
 import * as React from 'react'
-import { Review } from "@/db/types";
+import { Review } from "@/db/schema";
 
 
 export function ReviewList({ reviews }: {reviews: Array<Review>}) {

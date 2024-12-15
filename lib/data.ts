@@ -14,22 +14,30 @@ export async function getUser() {
 
 export async function getDecks(userId: string) {
     if (userId) {
-        const decks = await db.select({ id: decksTable.id, name: decksTable.name, description: decksTable.description, tags: decksTable.tags, isPublic: decksTable.isPublic}).from(decksTable).where(eq(decksTable.user, userId)).orderBy(desc(decksTable.createdOn))
+        const decks = await db.select({ id: decksTable.id, user: decksTable.user, name: decksTable.name, description: decksTable.description, tags: decksTable.tags, isPublic: decksTable.isPublic}).from(decksTable).where(eq(decksTable.user, userId)).orderBy(desc(decksTable.createdOn))
         return(decks);
+    }
+    return []; 
+}
+
+export async function getDeckById(deckId: number) {
+    if (deckId) {
+        const deck = await db.select({ id: decksTable.id, user: decksTable.user, name: decksTable.name, description: decksTable.description, tags: decksTable.tags, isPublic: decksTable.isPublic}).from(decksTable).where(eq(decksTable.id, deckId))
+        return(deck);
     }
     return []; 
 }
 
 export async function getFollowedDecks(userId: string) {
     if (userId) {
-        const followedDecks = await db.select({ id: decksTable.id, name: decksTable.name, description: decksTable.description, tags: decksTable.tags, isPublic: decksTable.isPublic}).from(followsTable).where(eq(followsTable.user, userId)).leftJoin(decksTable, eq(followsTable.deck, decksTable.id))
+        const followedDecks = await db.select({ id: decksTable.id,  user: decksTable.user, name: decksTable.name, description: decksTable.description, tags: decksTable.tags, isPublic: decksTable.isPublic}).from(followsTable).where(eq(followsTable.user, userId)).leftJoin(decksTable, eq(followsTable.deck, decksTable.id))
         return(followedDecks);
     }
     return []; 
 }
 
 export async function getPublicDecks() {
-    const decks = await db.select({ id: decksTable.id, name: decksTable.name, isPublic: decksTable.isPublic, description: decksTable.description, tags: decksTable.tags}).from(decksTable).where(eq(decksTable.isPublic, true)).orderBy(desc(decksTable.createdOn))
+    const decks = await db.select({ id: decksTable.id,  user: decksTable.user, name: decksTable.name, isPublic: decksTable.isPublic, description: decksTable.description, tags: decksTable.tags}).from(decksTable).where(eq(decksTable.isPublic, true)).orderBy(desc(decksTable.createdOn))
     
     return(decks);
 }

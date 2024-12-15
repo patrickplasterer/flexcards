@@ -4,7 +4,7 @@ import { StarIcon} from "lucide-react"
 import { useRouter, useSearchParams } from "next/navigation";
 import { cn } from "@/lib/utils";
 import * as React from 'react'
-import { Deck } from "@/db/types";
+import { Deck } from "@/db/schema";
 
 export function DeckPreview({ deck }: {deck: Deck}) {
     

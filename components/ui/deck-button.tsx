@@ -4,7 +4,6 @@ import { UsersIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { updatePublic } from "@/lib/actions"
 import { useSearchParams, useRouter } from "next/navigation"
-import * as React from 'react'
 
 
 export function DeckButton({ title, isPublic, deckId, workspace }: {title: string, isPublic: boolean, deckId: number, workspace: string}) {

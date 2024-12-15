@@ -4,7 +4,7 @@ import * as React from 'react';
 import { Button } from '../button';
 import { useRouter } from 'next/navigation';
 import { updateCard } from '@/lib/actions';
-import { Card } from '@/db/types';
+import { Card } from '@/db/schema';
 
 export function CardEditorButtons({ card }: {card: Card}) {
     let isDisabled = true;

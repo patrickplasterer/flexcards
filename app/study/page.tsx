@@ -3,16 +3,15 @@ import { CollapsingPanel } from "@/components/ui/collapsing-panel";
 import { FlashcardWrapper } from "@/components/ui/flashcard-wrapper";
 import { getUser, getDecks } from "@/lib/data";
 import { Toolbar } from "@/components/ui/toolbar";
-import * as React from 'react'
 import { getFollowedDecks } from "@/lib/data";
 import { User } from "@clerk/nextjs/server";
 
 
 export default async function Page({ searchParams }: {searchParams: { [key: string]: string | undefined }}) {
   
-  
-  const deckId = searchParams?.deck;
-  const cardId = searchParams?.card;
+  const searchParameters = await searchParams
+  const deckId = await searchParameters?.deck;
+  const cardId = await searchParameters?.card;
 
 
   const user = await getUser() as User;

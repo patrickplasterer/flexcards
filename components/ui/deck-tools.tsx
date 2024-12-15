@@ -8,10 +8,10 @@ import { Button } from './button';
 import { PlusIcon, RefreshCwIcon, Trash2Icon } from 'lucide-react';
 import { UpdateDeckDialog } from './editor/update-deck-dialog';
 import { DeleteDeckDialog } from './editor/delete-deck-dialog';
-import { Deck } from '@/db/types';
+import { Deck } from '@/db/schema';
 import { cn } from '@/lib/utils';
 
-export function DeckTools({ userId, deck, workspace }: {userId: string, deck: Deck | undefined, workspace: string}) {
+export function DeckTools({ userId, deck, workspace }: {userId: string, deck: Deck, workspace: string}) {
 
     function handleCreate(formData: FormData) {
         formData.append("userId", userId.toString());

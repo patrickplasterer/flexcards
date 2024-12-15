@@ -1,7 +1,7 @@
 "use client"
 
 import { DeckPreview } from "./deck-preview";
-import { Deck } from "@/db/types";
+import { Deck } from "@/db/schema";
 import * as React from 'react'
 
 export function PublicDeckList({ decks }: {decks: Array<Deck>}) {

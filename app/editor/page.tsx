@@ -9,9 +9,9 @@ import { User } from "@clerk/nextjs/server";
 
 export default async function Page({ searchParams }: {searchParams: { [key: string]: string | undefined }}) {
 
-
-    const deckId = searchParams?.deck;
-    const cardId = searchParams?.card;
+    const searchParameters = await searchParams
+    const deckId = await searchParameters?.deck;
+    const cardId = await searchParameters?.card;
 
     const user = await getUser() as User;
     const decks = await getDecks(user.id)

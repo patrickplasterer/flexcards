@@ -7,8 +7,9 @@ import * as React from 'react'
 
 
 export default async function Page({ searchParams }: {searchParams: { [key: string]: string | string[] | undefined }}) {
-
-    const deckId = searchParams?.deck;
+    
+    const searchParameters = await searchParams
+    const deckId = await searchParameters?.deck;
     const user = await getUser();
     const decks = await getPublicDecks();
     const deck = (deckId && decks) ? decks.find(({ id }) => id == Number(deckId)) : undefined

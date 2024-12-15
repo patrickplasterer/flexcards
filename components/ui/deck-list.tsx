@@ -1,6 +1,6 @@
 import { DeckButton } from "@/components/ui/deck-button";
 import * as React from 'react'
-import { Deck } from "@/db/types";
+import { Deck } from "@/db/schema";
 
 export async function DeckList({ workspace, decks }: {workspace: string, decks: Array<Deck>}) {
 

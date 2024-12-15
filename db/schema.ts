@@ -10,21 +10,22 @@ export const cardsTable = pgTable("cards", {
   createdOn: timestamp().notNull().defaultNow(),
 });
 
+
 export const hitsTypeEnum = pgEnum("hitsType", ["hit", "miss"]);
 
 export const hitsTable = pgTable("hits", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
-  card: integer("card").references(() => cardsTable.id),
+  card: integer("card").references(() => cardsTable.id, {onDelete: 'cascade'}).notNull(),
   user: varchar({ length: 255 }).notNull(),
   createdOn: timestamp().notNull().defaultNow(),
-  type: hitsTypeEnum(),
+  type: hitsTypeEnum().notNull(),
 });
 
 
 export const flipsTable = pgTable("flips", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
   user: varchar({ length: 255 }).notNull(),
-  card: integer("card").references(() => cardsTable.id),
+  card: integer("card").references(() => cardsTable.id, {onDelete: 'cascade'}).notNull(),
   createdOn: timestamp().notNull().defaultNow(),
 });
 
@@ -42,7 +43,7 @@ export const decksTable = pgTable("decks", {
 export const reviewsTable = pgTable("reviews", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
   user: varchar({ length: 255 }).notNull(),
-  deck: integer().references(() => decksTable.id),
+  deck: integer().references(() => decksTable.id, {onDelete: 'cascade'}).notNull(),
   body: varchar({ length: 1000 }).notNull(),
   rating: integer().notNull(),
   createdOn: timestamp().notNull().defaultNow(),
@@ -51,6 +52,15 @@ export const reviewsTable = pgTable("reviews", {
 export const followsTable = pgTable("follows", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
   user: varchar({ length: 255 }).notNull(),
-  deck: integer().references(() => decksTable.id),
+  deck: integer().references(() => decksTable.id, {onDelete: 'cascade'}).notNull(),
   createdOn: timestamp().notNull().defaultNow(),
 });
+
+// Types:
+
+export type Card = typeof cardsTable.$inferSelect
+export type Hit = typeof hitsTable.$inferSelect
+export type Flip = typeof flipsTable.$inferSelect
+export type Deck = typeof decksTable.$inferSelect
+export type Review = typeof reviewsTable.$inferSelect
+export type Follow = typeof followsTable.$inferSelect

@@ -6,7 +6,7 @@ import { ArrowLeft, ArrowRight, CheckIcon, XIcon, EyeOffIcon, EyeIcon } from "lu
 import { cn } from "@/lib/utils";
 import { addHit, addMiss, addFlip } from "@/lib/actions";
 import * as React from 'react'
-import { Card } from "@/db/types";
+import { Card } from "@/db/schema";
 import { useSearchParams } from "next/navigation";
 
 

@@ -1,19 +1,19 @@
 "use client"
 
-import { StarIcon, StarHalfIcon } from "lucide-react"
-import * as React from 'react';
+import { Review } from "@/db/schema";
+import { StarIcon } from "lucide-react"
 
 
-export function ReviewCard({ review }: {review: object}) {
+export function ReviewCard({ review }: {review: Review}) {
     
     const rating = review.rating
 
     const stars = [] as Array<React.ReactNode>;
     for (let i = 1; i <= rating; i++) {
-            stars.push(<StarIcon fill="white" className="h-2.5 w-2.5"/>)
+            stars.push(<StarIcon fill="white" key={i} className="h-2.5 w-2.5"/>)
     }
     for (let i = 1; i <= (5 - rating); i++) {
-            stars.push(<StarIcon className="h-2.5 w-2.5"/>)
+            stars.push(<StarIcon key={-i} className="h-2.5 w-2.5"/>)
     }
 
     return (

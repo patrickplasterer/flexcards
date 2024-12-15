@@ -1,9 +1,10 @@
 'use client';
 
-import { deleteFollow } from "@/lib/actions"
+import { copyDeck, deleteFollow } from "@/lib/actions"
 import { Button } from "../button"
-import { Deck } from "@/db/types"
+import { Deck } from "@/db/schema"
 import { createFollow } from "@/lib/actions"
+import { getDeckById } from "@/lib/data";
 
 
 export function DeckDescriptorButtons({ deck, userId, isFollowing }: {deck: Deck, userId: string, isFollowing: boolean}) {
@@ -13,12 +14,12 @@ export function DeckDescriptorButtons({ deck, userId, isFollowing }: {deck: Deck
     }
 
     function handleDeleteFollow() {
-        deleteFollow(deck.id, userId)
+        deleteFollow(userId, deck.id)
     }
 
-    function handleCopy() {
-
-        console.log('handleCopy called.')
+    async function handleCopy() {
+        const oldDeck = await getDeckById(deck.id);
+        copyDeck(userId, oldDeck[0]);
     }
 
     return (
