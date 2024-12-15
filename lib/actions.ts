@@ -258,3 +258,13 @@ export async function deleteFollow(userId: string, deckId: number) {
   }
   revalidatePath('/discover/browser');
 }
+
+export async function deleteReview(reviewId: number) {
+
+  try {
+    await db.delete(reviewsTable).where(eq(reviewsTable.id, reviewId))
+  } catch(error) {
+    console.log(error);
+  }
+  revalidatePath('/discover/browser');
+}

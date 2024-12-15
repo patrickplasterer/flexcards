@@ -2,9 +2,14 @@
 
 import { Review } from "@/db/schema";
 import { StarIcon } from "lucide-react"
+import { Button } from "../button";
+import { deleteReview } from "@/lib/actions";
 
+export function ReviewCard({ review, userId }: {review: Review, userId}) {
 
-export function ReviewCard({ review }: {review: Review}) {
+    function handleDelete() {
+        deleteReview(review.id);
+    }
     
     const rating = review.rating
 
@@ -23,6 +28,7 @@ export function ReviewCard({ review }: {review: Review}) {
                 {stars}
             </div>
             <p className="mt-1 text-xs overflow-hidden line-clamp-2 mb-2">{review.body}</p>
+            {userId == review.user ? <Button onClick={handleDelete} variant='default'>Delete Review</Button> : null}
         </div>
     )
 }

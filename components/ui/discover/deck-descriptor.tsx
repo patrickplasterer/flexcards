@@ -39,7 +39,7 @@ export async function DeckDescriptor({ activeDeck, reviews, userId, followedDeck
                 <h2 className="mt-4 mb-4 text-xl font-bold">Add a review:</h2>
                 <ReviewForm deckId={activeDeck.id} userId={userId}/>
                 <h2 className="mt-4 mb-4 text-xl font-bold">Reviews:</h2>
-                <ReviewList reviews={reviews}/>
+                <ReviewList reviews={reviews} userId={userId}/>
             </div>
         </div>
     )
