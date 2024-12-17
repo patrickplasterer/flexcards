@@ -177,12 +177,12 @@ export async function addFlip(userId: string, cardId: number) {
 const ReviewFormSchema = z.object({
   user: z.string(),
   deck: z.coerce.number(),
-  rating: z.coerce.number().min(1, 'You must select a rating.'),
+  rating: z.coerce.number().min(5, 'SERVER requires a five-star rating.'),
   body: z.string().min(10, 'SERVER requires 10 characters.')
 });
 
 export type ReviewFormState = {
-  success: boolean | undefined,
+  success: boolean | undefined;
   errors: {
     user?: string[],
     deck?: string[],
@@ -190,24 +190,33 @@ export type ReviewFormState = {
     body?: string[],
   };
   message: string | null;
+  fields?: {
+    user: string,
+    deck: number,
+    rating: number,
+    body: string
+  };
 }
 
-export async function addReview(prevState: ReviewFormState, formData: FormData) {
+export async function addReview(prevState: ReviewFormState, formData: FormData): Promise<ReviewFormState> {
 
   await delay(1000);
 
-  const validatedFields = ReviewFormSchema.safeParse({
-    user: formData.get('user'),
-    deck: formData.get('deck'),
-    rating: formData.get('rating'),
-    body: formData.get('body')
-  });
+  const fieldsData = {
+    user: formData.get('user') as string,
+    deck: Number(formData.get('deck')) as number,
+    rating: Number(formData.get('rating')) as number,
+    body: formData.get('body') as string
+  };
+
+  const validatedFields = ReviewFormSchema.safeParse(fieldsData);
 
   if (!validatedFields.success) {
     return {
       success: false,
       errors: validatedFields.error.flatten().fieldErrors,
       message: 'An error occured with the fields. Failed to add review.',
+      fields: fieldsData
     };
   }
   const { body, deck, user, rating } = validatedFields.data;
@@ -219,6 +228,7 @@ export async function addReview(prevState: ReviewFormState, formData: FormData) 
       success: true,
       errors: {},
       message: 'Review added!',
+      fields: undefined
     }
   } catch(error) {
     if (error instanceof DrizzleError) {
@@ -227,6 +237,7 @@ export async function addReview(prevState: ReviewFormState, formData: FormData) 
         success: false,
         errors: {},
         message: error.message,
+        fields: fieldsData
       }
     }
     else {
@@ -235,6 +246,7 @@ export async function addReview(prevState: ReviewFormState, formData: FormData) 
         success: false,
         errors: {},
         message: "Something went wrong with the database.",
+        fields: fieldsData
       }
     }
   }
