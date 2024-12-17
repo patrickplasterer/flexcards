@@ -25,6 +25,7 @@ export function ReviewForm({ deckId, userId }: {deckId: number, userId: string})
     const {
         register,
         handleSubmit,
+        reset,
         formState: { errors },
     } = useForm({
         defaultValues: {
@@ -58,6 +59,9 @@ export function ReviewForm({ deckId, userId }: {deckId: number, userId: string})
                             startTransition(() => {
                                 handleActionSubmit(new FormData(formRef.current!));
                             })
+                        reset();
+                        setStars(0);
+                        setRating(0);
                         })(e);
                     }}
                 >
