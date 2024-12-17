@@ -5,7 +5,7 @@ import { StarIcon } from "lucide-react"
 import { Button } from "../button";
 import { deleteReview } from "@/lib/actions";
 
-export function ReviewCard({ review, userId }: {review: Review, userId}) {
+export function ReviewCard({ review, userId }: {review: Review, userId: string}) {
 
     function handleDelete() {
         deleteReview(review.id);

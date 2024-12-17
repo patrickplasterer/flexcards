@@ -178,7 +178,7 @@ const ReviewFormSchema = z.object({
   user: z.string(),
   deck: z.coerce.number(),
   rating: z.coerce.number().min(1, 'You must select a rating.'),
-  body: z.string().min(1, 'You must include a comment.')
+  body: z.string().min(10, 'SERVER requires 10 characters.')
 });
 
 export type ReviewFormState = {
