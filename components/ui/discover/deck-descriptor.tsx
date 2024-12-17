@@ -37,7 +37,7 @@ export async function DeckDescriptor({ activeDeck, reviews, userId, followedDeck
             </div>
             <div className="flex flex-col gap-2">
                 <h2 className="mt-4 mb-4 text-xl font-bold">Add a review:</h2>
-                <ReviewForm deckId={activeDeck.id} userId={userId}/>
+                <ReviewForm key={activeDeck.id} deckId={activeDeck.id} userId={userId}/>
                 <h2 className="mt-4 mb-4 text-xl font-bold">Reviews:</h2>
                 <ReviewList reviews={reviews} userId={userId}/>
             </div>
