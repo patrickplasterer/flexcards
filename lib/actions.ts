@@ -120,7 +120,15 @@ export async function copyDeck(userId: string, oldDeck: Deck) {
 }
 
 
-export async function deleteDeck(deckId: number) {
+export async function deleteDeck(userId: string, deck: Deck) {
+
+  const deckId = deck.id
+  const deckUser = deck.user
+
+  if (userId !== deckUser) {
+    throw new Error('User does not have permission to delete deck.')
+  }
+
 
   try {
     await db.delete(cardsTable).where(eq(cardsTable.deck, deckId));
@@ -138,6 +146,12 @@ export async function updateDeck(formData: FormData) {
   const description = formData.get('description') as string;
   const tags = formData.get('tags') as string;
   const deckId = formData.get('deckId') as string;
+  const userId = formData.get('userId') as string;
+  const deckUser = formData.get('deckUser') as string;
+
+  if (userId !== deckUser) {
+    throw new Error('User does not have permission to update deck.')
+  };
 
   try {
     await db.update(decksTable).set({ name: name, description: description, tags: tags }).where(eq(decksTable.id, Number(deckId)))
